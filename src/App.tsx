@@ -14,6 +14,7 @@ import AppLayout from "./components/Layout";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Users from "./pages/Users";
 
 // Create a client instance for React Query
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
           <Route path="/" element={<AppLayout />}>
              <Route index element={<Home />} />
                <Route path="about" element={<About />} />
+                 <Route path="users" element={<Users />} />
           </Route>
 
           {/* Fallback route for unmatched URLs — displays a 404 Not Found page */}

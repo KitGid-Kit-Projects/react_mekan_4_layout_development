@@ -13,6 +13,7 @@ import {
   InfoCircleOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
 
 // Ant Design Layout subcomponents
@@ -46,6 +47,11 @@ const AppLayout: React.FC = () => {
       key: '/about',
       icon: <InfoCircleOutlined />,
       label: 'About',
+    },
+        {
+      key: '/users',
+      icon: <UserOutlined />,
+      label: 'Users',
     },
   ];
 
