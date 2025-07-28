@@ -1,38 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import {
   Layout as AntLayout,
   Menu,
   Button,
   Typography,
-  Avatar,
-  Dropdown,
   Space,
   Grid
 } from 'antd';
 import {
   HomeOutlined,
-  UserOutlined,
-  InfoCircleOutlined,
-  PlusOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  LogoutOutlined,
-  SettingOutlined
 } from '@ant-design/icons';
 
+// Ant Design Layout subcomponents
 const { Header, Sider, Footer, Content } = AntLayout;
 const { Title } = Typography;
 const { useBreakpoint } = Grid;
 
 const AppLayout: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const screens = useBreakpoint();
+  const [collapsed, setCollapsed] = useState(false); // Sidebar collapse state
+  const navigate = useNavigate(); // Navigation hook
+  const location = useLocation(); // Current path
+  const screens = useBreakpoint(); // Responsive breakpoints (e.g., md, lg)
 
-  // Auto-collapse sidebar on mobile
-  React.useEffect(() => {
+  // 📱 Collapse sidebar on mobile screens
+  useEffect(() => {
     if (!screens.md) {
       setCollapsed(true);
     } else {
@@ -40,73 +34,29 @@ const AppLayout: React.FC = () => {
     }
   }, [screens.md]);
 
+  // 🧭 Sidebar menu items
   const menuItems = [
     {
-      key: '/',
-      icon: <HomeOutlined />,
-      label: 'Home',
-    },
-    {
-      key: '/about',
-      icon: <InfoCircleOutlined />,
-      label: 'About',
-    },
-    {
-      key: '/users',
-      icon: <UserOutlined />,
-      label: 'Users',
-    },
-    {
-      key: '/create-user',
-      icon: <PlusOutlined />,
-      label: 'Create User',
+      key: '/', // Route path
+      icon: <HomeOutlined />, // Icon shown on menu
+      label: 'Home', // Label text
     },
   ];
 
-  const userMenuItems = [
-    {
-      key: 'profile',
-      icon: <UserOutlined />,
-      label: 'Profile',
-    },
-    {
-      key: 'settings',
-      icon: <SettingOutlined />,
-      label: 'Settings',
-    },
-    {
-      type: 'divider' as const,
-    },
-    {
-      key: 'logout',
-      icon: <LogoutOutlined />,
-      label: 'Logout',
-      danger: true,
-    },
-  ];
-
+  // 🔁 Navigate to route when menu item is clicked
   const handleMenuClick = ({ key }: { key: string }) => {
     navigate(key);
   };
 
-  const handleUserMenuClick = ({ key }: { key: string }) => {
-    if (key === 'logout') {
-      console.log('Logging out...');
-    } else {
-      console.log(`Clicked: ${key}`);
-    }
-  };
-
   return (
     <AntLayout style={{ minHeight: '100vh' }}>
+      {/* 🚪 Sidebar Menu */}
       <Sider
         trigger={null}
         collapsible
         collapsed={collapsed}
         breakpoint="md"
-        onBreakpoint={(broken) => {
-          setCollapsed(broken);
-        }}
+        onBreakpoint={(broken) => setCollapsed(broken)}
         style={{
           overflow: 'auto',
           height: '100vh',
@@ -117,9 +67,10 @@ const AppLayout: React.FC = () => {
           zIndex: 1000,
         }}
       >
-        <div style={{ 
-          height: 32, 
-          margin: 16, 
+        {/* 🔷 Logo or App Title */}
+        <div style={{
+          height: 32,
+          margin: 16,
           background: 'rgba(255, 255, 255, 0.2)',
           borderRadius: 6,
           display: 'flex',
@@ -132,18 +83,26 @@ const AppLayout: React.FC = () => {
             </Title>
           )}
         </div>
+
+        {/* 📋 Menu items */}
         <Menu
           theme="dark"
           mode="inline"
-          selectedKeys={[location.pathname]}
+          selectedKeys={[location.pathname]} // Highlights current path
           items={menuItems}
           onClick={handleMenuClick}
         />
       </Sider>
 
-      <AntLayout style={{ marginLeft: collapsed ? 80 : 200, transition: 'margin-left 0.2s' }}>
-        <Header style={{ 
-          padding: '0 16px', 
+      {/* 📄 Main Content Area */}
+      <AntLayout style={{
+        marginLeft: collapsed ? 80 : 200, // Adjust margin when sidebar collapses
+        transition: 'margin-left 0.2s'
+      }}>
+        
+        {/* 🔝 Top Navigation Bar */}
+        <Header style={{
+          padding: '0 16px',
           background: '#fff',
           display: 'flex',
           alignItems: 'center',
@@ -151,6 +110,7 @@ const AppLayout: React.FC = () => {
           borderBottom: '1px solid #f0f0f0'
         }}>
           <Space>
+            {/* 📂 Collapse / Expand Sidebar Toggle */}
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -165,27 +125,13 @@ const AppLayout: React.FC = () => {
               Dashboard
             </Title>
           </Space>
-
-          <Space>
-            <Dropdown 
-              menu={{ 
-                items: userMenuItems,
-                onClick: handleUserMenuClick
-              }} 
-              placement="bottomRight"
-            >
-              <Space style={{ cursor: 'pointer' }}>
-                <Avatar icon={<UserOutlined />} />
-                <span>John Doe</span>
-              </Space>
-            </Dropdown>
-          </Space>
         </Header>
 
-        <Content style={{ 
+        {/* 📦 Page Content */}
+        <Content style={{
           margin: '24px 16px 0',
           overflow: 'initial',
-          minHeight: 'calc(100vh - 112px)'
+          minHeight: 'calc(100vh - 112px)' // Adjust for header + footer height
         }}>
           <div style={{
             padding: 24,
@@ -193,11 +139,12 @@ const AppLayout: React.FC = () => {
             borderRadius: 8,
             minHeight: '100%'
           }}>
-            <Outlet />
+            <Outlet /> {/* Renders the child route component */}
           </div>
         </Content>
 
-        <Footer style={{ 
+        {/* 🧾 Footer */}
+        <Footer style={{
           textAlign: 'center',
           background: '#f5f5f5',
           borderTop: '1px solid #e8e8e8'
