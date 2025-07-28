@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Card, Row, Col, Timeline, Tag, Divider } from 'antd';
+import { Typography, Card, Row, Col, Timeline, Tag, Divider } from 'antd'; // 🔹 Ant Design komponentləri
 import { 
   CheckCircleOutlined, 
   SyncOutlined, 
@@ -8,11 +8,13 @@ import {
   CodeOutlined,
   LayoutOutlined,
   MobileOutlined
-} from '@ant-design/icons';
+} from '@ant-design/icons'; // 🔹 Ant Design ikonları
 
+// 🔹 Ant Design-in yazı komponentlərini destructure edirik
 const { Title, Paragraph, Text } = Typography;
 
 const About: React.FC = () => {
+  // ✅ Xüsusiyyətlər siyahısı – hər biri ikonla birlikdə göstərilir
   const features = [
     {
       title: 'Responsive Layout',
@@ -36,6 +38,7 @@ const About: React.FC = () => {
     },
   ];
 
+  // ✅ Texnologiya siyahısı — `Tag` komponenti ilə rəngli göstərilir
   const technologies = [
     { name: 'React 18', color: 'blue' },
     { name: 'TypeScript', color: 'purple' },
@@ -47,6 +50,7 @@ const About: React.FC = () => {
 
   return (
     <div>
+      {/* 🔹 Başlıq və giriş mətni */}
       <Title level={2}>About This Application</Title>
       <Paragraph>
         This application demonstrates a comprehensive layout structure using Ant Design components
@@ -56,6 +60,7 @@ const About: React.FC = () => {
 
       <Divider />
 
+      {/* 🔹 Xüsusiyyətlər hissəsi */}
       <Title level={3}>Key Features</Title>
       <Row gutter={[16, 16]} style={{ marginBottom: 32 }}>
         {features.map((feature, index) => (
@@ -64,6 +69,7 @@ const About: React.FC = () => {
               <div style={{ textAlign: 'center', marginBottom: 16 }}>
                 {feature.icon}
               </div>
+              {/* Ant Design `Card.Meta` ilə başlıq və izah */}
               <Card.Meta
                 title={feature.title}
                 description={feature.description}
@@ -74,9 +80,11 @@ const About: React.FC = () => {
       </Row>
 
       <Row gutter={[24, 24]}>
+        {/* 🔹 Texnologiyalar hissəsi */}
         <Col xs={24} lg={12}>
           <Card title="Technologies Used">
             <div style={{ marginBottom: 16 }}>
+              {/* Rəngli texnologiya tag-ları */}
               {technologies.map((tech, index) => (
                 <Tag key={index} color={tech.color} style={{ marginBottom: 8 }}>
                   {tech.name}
@@ -91,6 +99,7 @@ const About: React.FC = () => {
           </Card>
         </Col>
 
+        {/* 🔹 İnkişaf prosesi (timeline) hissəsi */}
         <Col xs={24} lg={12}>
           <Card title="Development Timeline">
             <Timeline
@@ -147,6 +156,7 @@ const About: React.FC = () => {
 
       <Divider />
 
+      {/* 🔹 Arxitektura təsviri */}
       <Card>
         <Title level={4}>Architecture Overview</Title>
         <Paragraph>
