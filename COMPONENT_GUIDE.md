@@ -23,3 +23,5 @@ App
                 └── Route path="/about"
 
                     └── About   
+
+                          └──   useHome // Hook to fetch data for About page
