@@ -1,4 +1,4 @@
-App.tsx
+App
 └── [QueryClientProvider] (📦 '@tanstack/react-query')
     └── [ConfigProvider] (📦 'antd')
         └── [BrowserRouter] (📦 'react-router-dom')
