@@ -1,0 +1,21 @@
+App.tsx
+└── [QueryClientProvider] (📦 '@tanstack/react-query')
+    └── [ConfigProvider] (📦 'antd')
+        └── [BrowserRouter] (📦 'react-router-dom')
+            └── [Routes] (📦 'react-router-dom')
+                ├── [Route] path="/" (📦 'react-router-dom')
+                │   └──≫ AppLayout (📦 './components/Layout.tsx')
+                │       └── [AntLayout] (📦 'antd')
+                │           ├── [Sider] (📦 'antd')
+                │           │   ├── Title (📦 'antd/es/typography/Title')
+                │           │   └── [Menu] (📦 'antd')
+                │           │       └──≫ navigate() (📦 'react-router-dom')
+                │           └── [AntLayout] (📦 'antd') - Content Wrapper
+                │               ├── [Header] (📦 'antd')
+                │               │   └── [Button] (📦 'antd') for sidebar toggle
+                │               ├── [Content] (📦 'antd')
+                │               │   └── [Outlet] (📦 'react-router-dom')  
+                │               │       └──≫ (Child pages loaded here, but not defined in current routes)
+                │               └── [Footer] (📦 'antd')
+                └── [Route] path="*" (📦 'react-router-dom')
+                    └──≫ NotFound (📦 './pages/NotFound.tsx')
