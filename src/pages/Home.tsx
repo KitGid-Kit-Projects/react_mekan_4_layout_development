@@ -6,15 +6,11 @@ import { Typography, Row, Col, Card, Statistic, Progress, Button, Space } from '
 // ✅ Import Ant Design icons
 import { 
   ArrowUpOutlined, 
-  ArrowDownOutlined, 
   UserOutlined,
-  ShoppingCartOutlined,
-  DollarCircleOutlined,
   RightOutlined
 } from '@ant-design/icons';
 
 // ✅ React Router hook for navigation
-import { useNavigate } from 'react-router-dom';
 import { useHome } from '@/hooks/home/useHome';
 
 // ✅ Destructure Typography components
