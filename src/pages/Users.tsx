@@ -1,32 +1,14 @@
-import React, { useState } from 'react';
-import { Typography, Table, Card, Button, Space, Tag, Avatar, Input, Dropdown, MenuProps } from 'antd';
-import { 
-  UserOutlined, 
-  EditOutlined, 
-  DeleteOutlined, 
+import React from 'react';
+import { Typography, Table, Card, Button,  Input } from 'antd';
+import {  
   PlusOutlined,
   SearchOutlined,
-  MoreOutlined,
-  MailOutlined,
-  PhoneOutlined
 } from '@ant-design/icons';
-import { useNavigate } from 'react-router-dom';
-import type { TableColumnsType } from 'antd';
 import { useUsers } from '@/hooks/users/useUsers';
 
 const { Title } = Typography;
 const { Search } = Input;
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  role: string;
-  status: 'active' | 'inactive';
-  avatar?: string;
-  joinDate: string;
-}
 
 const Users: React.FC = () => {
 const {
