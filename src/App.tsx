@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ConfigProvider } from 'antd';
 
 // Import the main layout component for the app
-import AppLayout from "./components/Layout";
+import AppLayout from "./pages/Layout";
 
 // Import a fallback page for unknown routes (404)
 import NotFound from "./pages/NotFound";
