@@ -1,17 +1,18 @@
-import React from 'react';
+import React from 'react'; 
 import { Typography, Row, Col, Card, Statistic, Progress, Button, Space } from 'antd';
 import { 
   ArrowUpOutlined,  
   UserOutlined,
   RightOutlined
 } from '@ant-design/icons';
-import useHome from '@/hooks/home/useHome';
+import useHome from '../hooks/useHome';
 
 const { Title, Paragraph } = Typography;
 
 const Home: React.FC = () => {
 
-const {navigate,statsData}=useHome()
+  const {navigate,statsData}=useHome()
+
   return (
     <div>
       <Title level={2}>Welcome to Dashboard</Title>

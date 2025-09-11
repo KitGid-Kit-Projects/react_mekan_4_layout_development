@@ -1,4 +1,9 @@
-import React from 'react';
+// Line-by-line detailed annotations for CreateUser.tsx.
+// Each line or small logical group includes a short comment explaining its purpose, types, and runtime behavior.
+
+import React from 'react'; 
+// Import React to enable JSX and access React types (explicit for clarity across toolchains).
+
 import { 
   Typography, 
   Form, 
@@ -13,6 +18,19 @@ import {
   Col,
   Space
 } from 'antd';
+// Import Ant Design components used in this form:
+// - Typography: for Title/Paragraph text.
+// - Form: controlled form instance with validation.
+// - Input / TextArea: text inputs.
+// - Button: actionable buttons (submit/reset, upload trigger).
+// - Card: visual container for the form.
+// - Select: dropdowns for role/department.
+// - Switch: boolean toggle for account status.
+// - DatePicker: date selector for join date.
+// - Upload: file upload wrapper for profile picture.
+// - Row/Col: grid layout for responsive form arrangement.
+// - Space: small layout helper for spacing inline items.
+
 import { 
   UserOutlined, 
   MailOutlined, 
@@ -22,25 +40,48 @@ import {
   UploadOutlined,
   ArrowLeftOutlined
 } from '@ant-design/icons';
-import useCreateUser from '@/hooks/createUser/useCreateUser';
+// Import only the icon components used in this file for visual affordances:
+// - UserOutlined, MailOutlined, PhoneOutlined: input prefixes.
+// - SaveOutlined, ClearOutlined: action icons for buttons.
+// - UploadOutlined: icon inside upload button.
+// - ArrowLeftOutlined: back navigation button.
+
+import useCreateUser from '../hooks/useCreateUser.tsx';
+// Import custom hook that encapsulates form logic, validation handling, upload props, and navigation helpers.
+// The hook returns the AntD form instance and handlers used below.
 
 const { Title, Paragraph } = Typography;
-const { Option } = Select;
-const { TextArea } = Input;
+// Destructure Title and Paragraph from Typography to use semantic headings and paragraphs.
 
+const { Option } = Select;
+// Destructure Option from Select to define dropdown options concisely.
+
+const { TextArea } = Input;
+// Destructure TextArea from Input for multi-line bio input.
 
 const CreateUser: React.FC = () => {
-const {
-  navigate,
-  form,
-  uploadProps,
-  onFinish,
-  onFinishFailed,
-  onReset
-}=useCreateUser()
+// Define the CreateUser component as a React Functional Component with no props expected.
+// This component renders a form for creating a new user and delegates logic to useCreateUser hook.
+
+  const {
+    navigate,
+    form,
+    uploadProps,
+    onFinish,
+    onFinishFailed,
+    onReset
+  } = useCreateUser();
+  // Destructure values returned by the custom hook:
+  // - navigate: function to programmatically navigate (react-router).
+  // - form: Ant Design Form instance used for programmatic control (reset/validate).
+  // - uploadProps: object to spread into Upload component (controls beforeUpload, onChange, etc).
+  // - onFinish: handler called when form validation succeeds and submit occurs.
+  // - onFinishFailed: handler called when form validation fails.
+  // - onReset: convenience function to reset the form fields.
 
   return (
     <div>
+      {/* Top action row with back button */}
       <div style={{ marginBottom: 24 }}>
         <Space>
           <Button 
@@ -49,42 +90,52 @@ const {
           >
             Back to Users
           </Button>
+          {/* Button with arrow icon that navigates back to the users list using navigate('/users').
+              Using navigate keeps navigation client-side (no full page reload). */}
         </Space>
       </div>
 
       <Title level={2}>Create New User</Title>
+      {/* Page heading using Ant Design typography (semantic H2). */}
+
       <Paragraph>
         Fill in the form below to create a new user account. All fields marked with * are required.
       </Paragraph>
+      {/* Introductory paragraph explaining form intent and required fields. */}
 
       <Card>
+        {/* Card provides a white, padded surface to contain the form for visual separation. */}
+
         <Form
-          form={form}
-          layout="vertical"
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
-          initialValues={{
+          form={form}                        // controlled AntD form instance returned by hook
+          layout="vertical"                  // vertical label layout (label above control)
+          onFinish={onFinish}                // called when validation passes and submit triggered
+          onFinishFailed={onFinishFailed}    // called when validation fails on submit
+          initialValues={{                   // initial default values for form fields
             status: true,
             role: 'viewer',
             department: 'general',
           }}
         >
           <Row gutter={[16, 16]}>
+            {/* Use responsive grid: gutter provides spacing between columns/rows. */}
+
             <Col xs={24} sm={12}>
               <Form.Item
-                label="First Name"
-                name="firstName"
-                rules={[
+                label="First Name"            // visible label above the input
+                name="firstName"              // form field key used in values/validation
+                rules={[                      // validation rules for this field
                   { required: true, message: 'Please enter first name!' },
                   { min: 2, message: 'First name must be at least 2 characters!' },
                 ]}
               >
                 <Input 
-                  prefix={<UserOutlined />} 
+                  prefix={<UserOutlined />}  // input prefix icon
                   placeholder="Enter first name"
                   size="large"
                 />
               </Form.Item>
+              {/* First name input: required, min length enforced by AntD Form. */}
             </Col>
 
             <Col xs={24} sm={12}>
@@ -102,6 +153,7 @@ const {
                   size="large"
                 />
               </Form.Item>
+              {/* Last name input: mirrors first name validation. */}
             </Col>
 
             <Col xs={24} sm={12}>
@@ -119,6 +171,7 @@ const {
                   size="large"
                 />
               </Form.Item>
+              {/* Email input: required and uses built-in 'email' type validation for format. */}
             </Col>
 
             <Col xs={24} sm={12}>
@@ -136,6 +189,7 @@ const {
                   size="large"
                 />
               </Form.Item>
+              {/* Phone input: required and validated against a simple regex that permits international formats, spaces, dashes, parentheses. */}
             </Col>
 
             <Col xs={24} sm={12}>
@@ -151,6 +205,7 @@ const {
                   <Option value="manager">Manager</Option>
                 </Select>
               </Form.Item>
+              {/* Role select: required; options represent application roles. */}
             </Col>
 
             <Col xs={24} sm={12}>
@@ -168,6 +223,7 @@ const {
                   <Option value="general">General</Option>
                 </Select>
               </Form.Item>
+              {/* Department select: required; provides several organizational options. */}
             </Col>
 
             <Col xs={24} sm={12}>
@@ -182,6 +238,7 @@ const {
                   size="large"
                 />
               </Form.Item>
+              {/* Join date: required DatePicker that fills full column width. Value type depends on DatePicker config (Moment/Date). */}
             </Col>
 
             <Col xs={24} sm={12}>
@@ -198,6 +255,8 @@ const {
                   />
                 </div>
               </Form.Item>
+              {/* Status switch: uses valuePropName="checked" so boolean maps to Switch checked state.
+                  Default initial value defined in initialValues above. */}
             </Col>
 
             <Col xs={24}>
@@ -211,6 +270,10 @@ const {
                   </Button>
                 </Upload>
               </Form.Item>
+              {/* Upload control for avatar:
+                  - uploadProps comes from hook and typically prevents automatic upload (beforeUpload returning false),
+                    validates file type/size, and provides onChange to capture selected file.
+                  - Upload is wrapped around a Button that triggers file selection. */}
             </Col>
 
             <Col xs={24}>
@@ -228,6 +291,7 @@ const {
                   maxLength={500}
                 />
               </Form.Item>
+              {/* Multi-line bio: optional, but limited to 500 characters; showCount gives a character counter. */}
             </Col>
           </Row>
 
@@ -238,6 +302,11 @@ const {
             justifyContent: 'flex-end',
             flexWrap: 'wrap'
           }}>
+            {/* Action buttons container:
+                - spaced horizontally with gap,
+                - right-aligned using justifyContent,
+                - wraps on narrow screens for responsiveness. */}
+
             <Button 
               icon={<ClearOutlined />}
               onClick={onReset}
@@ -245,6 +314,8 @@ const {
             >
               Reset Form
             </Button>
+            {/* Reset button: calls onReset from hook which resets the form and optionally shows feedback. */}
+
             <Button 
               type="primary" 
               htmlType="submit"
@@ -253,6 +324,10 @@ const {
             >
               Create User
             </Button>
+            {/* Submit button:
+                - type="primary" gives visual emphasis.
+                - htmlType="submit" triggers Form's onFinish validation + submit flow.
+                - onFinish (hook) will handle the validated values (e.g., call API then navigate). */}
           </div>
         </Form>
       </Card>
@@ -261,3 +336,4 @@ const {
 };
 
 export default CreateUser;
+// Default export so router or other modules can import and render
