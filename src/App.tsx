@@ -51,7 +51,7 @@ const App = () => (
             {/* The "/users" route renders the Users component inside AppLayout. */}
             <Route path="users" element={<Users />} />
             {/* The "/create-user" route renders the CreateUser component inside AppLayout. */}
-            <Route path="create-user" element={<CreateUser />} />
+            <Route path="create-user" element={<CreateUser />} /> 
           </Route>
           {/* The wildcard route ("*") matches any undefined path and renders the NotFound component (404 page). */}
           <Route path="*" element={<NotFound />} />

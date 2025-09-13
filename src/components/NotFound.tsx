@@ -42,7 +42,7 @@ const NotFound = () => {
       <div className="text-center">
         {/* Inner container centers text and stacks the heading, description, and link. */}
 
-        <h1 className="text-4xl font-bold mb-4">404</h1>
+        <h1 className="text-4xl font-bold mb-4">404-Kazim dayi</h1>
         {/* Main heading: large, bold "404". 
             - text-4xl: font size
             - font-bold: weight
