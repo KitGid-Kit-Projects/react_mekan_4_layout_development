@@ -1,40 +1,40 @@
-import React from 'react';
-import { Form, Input, Col } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import React from 'react'; // React core import required for JSX and component definitions
+import { Form, Input, Col } from 'antd'; // Ant Design: Form controls, Input field, responsive column
+import { UserOutlined } from '@ant-design/icons'; // Icon used as input prefix to indicate user/name fields
 
-const NameFields: React.FC = () => {
+const NameFields: React.FC = () => { // Define NameFields as a functional React component (no props expected)
   return (
-    <>
-      <Col xs={24} sm={12}>
+    <> {/* Fragment groups the two Col elements without adding an extra DOM node */}
+      <Col xs={24} sm={12}> {/* Left column: full width on extra-small screens, half width on small+ screens */}
         <Form.Item
-          label="First Name"
-          name="firstName"
-          rules={[
-            { required: true, message: 'Please enter first name!' },
-            { min: 2, message: 'First name must be at least 2 characters!' },
+          label="First Name" /* Label displayed above the input to describe the field */
+          name="firstName" /* Key used by the parent AntD Form for this field's value */
+          rules={[ /* Validation rules applied by AntD Form for this field */
+            { required: true, message: 'Please enter first name!' }, /* Required check with message */
+            { min: 2, message: 'First name must be at least 2 characters!' }, /* Minimum length rule */
           ]}
         >
           <Input 
-            prefix={<UserOutlined />} 
-            placeholder="Enter first name"
-            size="large"
+            prefix={<UserOutlined />} /* Prefix icon inside the input to indicate it's a name field */
+            placeholder="Enter first name" /* Placeholder guiding the user what to type */
+            size="large" /* Size prop increases input height for better accessibility/touch */
           />
         </Form.Item>
       </Col>
 
-      <Col xs={24} sm={12}>
+      <Col xs={24} sm={12}> {/* Right column: full width on extra-small, half width on small+ */}
         <Form.Item
-          label="Last Name"
-          name="lastName"
-          rules={[
-            { required: true, message: 'Please enter last name!' },
-            { min: 2, message: 'Last name must be at least 2 characters!' },
+          label="Last Name" /* Label shown above the last name input */
+          name="lastName" /* Form key for binding last name value */
+          rules={[ /* Validation rules for last name field */
+            { required: true, message: 'Please enter last name!' }, /* Required validation */
+            { min: 2, message: 'Last name must be at least 2 characters!' }, /* Minimum length validation */
           ]}
         >
           <Input 
-            prefix={<UserOutlined />} 
-            placeholder="Enter last name"
-            size="large"
+            prefix={<UserOutlined />} /* Reuse user icon as prefix for visual consistency */
+            placeholder="Enter last name" /* Placeholder example for last name */
+            size="large" /* Keep size consistent with first name input */
           />
         </Form.Item>
       </Col>
@@ -42,4 +42,4 @@ const NameFields: React.FC = () => {
   );
 };
 
-export default NameFields;
+export default NameFields; // Default export so parent CreateUser form can import and render these fields

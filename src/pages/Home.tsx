@@ -1,21 +1,19 @@
-import React from 'react';
-import { Typography, Row, Col } from 'antd';
-import useHome from '@/hooks/home/useHome';
-import WelcomeSection from '@/components/Home/WelcomeSection';
-import StatsSection from '@/components/Home/StatsSection';
-import DashboardContent from '@/components/Home/DashboardContent';
+import React from 'react'; // Import React to enable JSX and component definitions
+import useHome from '@/hooks/useHome'; // Custom hook that provides navigation and stats data for the dashboard
+import WelcomeSection from '@/components/Home/WelcomeSection'; // Top welcome section component
+import StatsSection from '@/components/Home/StatsSection'; // Section that renders statistic cards
+import DashboardContent from '@/components/Home/DashboardContent'; // Main dashboard content (progress + actions)
 
-
-const Home: React.FC = () => {
-  const { navigate, statsData } = useHome();
+const Home: React.FC = () => { // Define Home as a React functional component (no props expected)
+  const { navigate, statsData } = useHome(); // Destructure navigate function and prepared stats data from the hook
   
   return (
-    <div>
-      <WelcomeSection />
-      <StatsSection statsData={statsData} />
-      <DashboardContent navigate={navigate} />
+    <div> {/* Page container for the Home/dashboard content */}
+      <WelcomeSection /> {/* Renders greeting/title and short descriptive paragraph */}
+      <StatsSection statsData={statsData} /> {/* Renders responsive stat cards using data from the hook */}
+      <DashboardContent navigate={navigate} /> {/* Renders progress and quick actions; receives navigate for routing */}
     </div>
   );
 };
 
-export default Home;
+export default Home; // Default export so routing/pages can import and render this page

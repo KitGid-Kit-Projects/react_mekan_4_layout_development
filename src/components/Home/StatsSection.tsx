@@ -1,25 +1,17 @@
-import React from 'react';
-import { Row, Col, Card } from 'antd';
-import StatCard from './StatCard';
+import React from 'react'; // React core: required for JSX and component definitions
+import { Row, Col } from 'antd'; // Ant Design grid primitives used to layout stat cards
+import StatCard from './StatCard'; // Reusable StatCard component that renders a single statistic
 
-interface StatData {
-  title: string;
-  value: number;
-  precision?: number;
-  valueStyle?: React.CSSProperties;
-  prefix?: React.ReactNode;
-  suffix?: React.ReactNode;
-}
-
-interface StatsSectionProps {
-  statsData: StatData[];
-}
-
-const StatsSection: React.FC<StatsSectionProps> = ({ statsData }) => {
+// StatsSection: renders a responsive row of StatCard components from statsData prop
+const StatsSection: React.FC<any> = ({ statsData }) => {
   return (
+    // Row: AntD grid row with horizontal & vertical gutter and bottom spacing
     <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
+      {/* Map over statsData to render one StatCard per stat object */}
       {statsData.map((stat, index) => (
+        // Col: responsive column sizing (xs: full, sm: half, lg: third)
         <Col xs={24} sm={12} lg={8} key={index}>
+          {/* StatCard: receives a single stat object (title, value, etc.) */}
           <StatCard stat={stat} />
         </Col>
       ))}
@@ -27,4 +19,4 @@ const StatsSection: React.FC<StatsSectionProps> = ({ statsData }) => {
   );
 };
 
-export default StatsSection;
+export default StatsSection; // Default export so parent pages (Home/Dashboard) can import and render this section

@@ -1,22 +1,21 @@
-import React from 'react';
-import { Divider } from 'antd';
-import AboutHeader from '@/components/About/AboutHeader';
-import FeaturesSection from '@/components/About/FeaturesSection';
-import TechAndTimelineSection from '@/components/About/TechAndTimelineSection';
-import ArchitectureSection from '@/components/About/ArchitectureSection';
+import React from 'react'; // Import React to enable JSX and define the component
+import { Divider } from 'antd'; // Ant Design Divider used to separate sections visually
+import AboutHeader from '@/components/About/AboutHeader'; // Header component for the About page
+import FeaturesSection from '@/components/About/FeaturesSection'; // Section listing key features as cards
+import TechAndTimelineSection from '@/components/About/TechAndTimelineSection'; // Two-column section: technologies + timeline
+import ArchitectureSection from '@/components/About/ArchitectureSection'; // Section describing app architecture
 
-
-const About: React.FC = () => {
+const About: React.FC = () => { // Define About as a React functional component (no props expected)
   return (
-    <div>
-      <AboutHeader />
-      <Divider />
-      <FeaturesSection />
-      <TechAndTimelineSection />
-      <Divider />
-      <ArchitectureSection />
+    <div> {/* Page container: groups all About page sections */}
+      <AboutHeader /> {/* Top header: title and brief description for the About page */}
+      <Divider /> {/* Visual divider between header and feature section */}
+      <FeaturesSection /> {/* Renders key features as responsive cards */}
+      <TechAndTimelineSection /> {/* Renders technologies used and development timeline side-by-side */}
+      <Divider /> {/* Visual divider before architecture overview */}
+      <ArchitectureSection /> {/* Detailed architecture overview card */}
     </div>
   );
 };
 
-export default About;
+export default About; // Default export so routing/pages can import and render the About page

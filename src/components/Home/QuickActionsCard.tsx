@@ -1,34 +1,31 @@
-import React from 'react';
-import { Card, Space } from 'antd';
-import ActionButton from './ActionButton';
+import React from 'react'; // React core: enables JSX and component definitions
+import { Card, Space } from 'antd'; // Ant Design Card for container, Space for vertical spacing/layout
+import ActionButton from './ActionButton'; // Reusable action button component used for each quick action
 
-interface QuickActionsCardProps {
-  navigate: (path: string) => void;
-}
 
-const QuickActionsCard: React.FC<QuickActionsCardProps> = ({ navigate }) => {
+const QuickActionsCard: React.FC<any> = ({ navigate }) => { // Component receives `navigate` to perform route changes
   return (
-    <Card title="Quick Actions" bordered={false}>
-      <Space direction="vertical" style={{ width: '100%' }}>
+    <Card title="Quick Actions" bordered={false}> {/* Card: titled container; bordered={false} for flat style */}
+      <Space direction="vertical" style={{ width: '100%' }}> {/* Space: stack buttons vertically and stretch to full width */}
         <ActionButton 
-          type="primary"
-          icon="user"
-          text="Create New User"
-          onClick={() => navigate('/create-user')}
+          type="primary" /* type: AntD button type - primary to emphasize the main action */
+          icon="user" /* icon: key passed to ActionButton to render leading icon */
+          text="Create New User" /* text: visible label inside the button */
+          onClick={() => navigate('/create-user')} /* onClick: navigates to the create-user route when clicked */
         />
         <ActionButton 
-          icon="user"
-          text="View All Users"
-          onClick={() => navigate('/users')}
+          icon="user" /* secondary action uses default button style with same leading icon */
+          text="View All Users" /* label for viewing the users list */
+          onClick={() => navigate('/users')} /* navigates to the users listing route */
         />
         <ActionButton 
-          icon="arrowUp"
-          text="Learn More About This App"
-          onClick={() => navigate('/about')}
+          icon="arrowUp" /* icon key for an upward/learn-more affordance */
+          text="Learn More About This App" /* label that invites the user to read about the app */
+          onClick={() => navigate('/about')} /* navigates to the about page */
         />
       </Space>
     </Card>
   );
 };
 
-export default QuickActionsCard;
+export default QuickActionsCard; // Default export so parent pages (Dashboard/Home) can import and render this card

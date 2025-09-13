@@ -1,68 +1,63 @@
-import React from 'react';
-import { Layout, Button, Typography, Space, Dropdown, Avatar } from 'antd';
+import React from 'react'; // Import React for JSX and component creation
+import { Layout, Button, Typography, Space, Dropdown, Avatar } from 'antd'; // AntD primitives used in header
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UserOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-} from '@ant-design/icons';
+  MenuFoldOutlined, // Icon when menu is folded
+  MenuUnfoldOutlined, // Icon when menu is unfolded
+  UserOutlined, // Icon used for user/avatar
+  SettingOutlined, // Icon for settings menu item
+  LogoutOutlined, // Icon for logout menu item
+} from '@ant-design/icons'; // Import icons from Ant Design
 
-const { Header } = Layout;
-const { Title } = Typography;
+const { Header } = Layout; // Destructure Header from Layout for concise usage
+const { Title } = Typography; // Destructure Title from Typography for concise usage
 
-interface HeaderBarProps {
-  collapsed: boolean;
-  setCollapsed: (v: boolean) => void;
-}
-
-const HeaderBar: React.FC<HeaderBarProps> = ({ collapsed, setCollapsed }) => {
-  const userMenuItems = [
-    { key: 'profile', icon: <UserOutlined />, label: 'Profile' },
-    { key: 'settings', icon: <SettingOutlined />, label: 'Settings' },
-    { type: 'divider' as const },
-    { key: 'logout', icon: <LogoutOutlined />, label: 'Logout', danger: true },
+const HeaderBar: React.FC<any> = ({ collapsed, setCollapsed }) => { // HeaderBar receives collapsed state and setter
+  const userMenuItems = [ // Define items for the user dropdown menu
+    { key: 'profile', icon: <UserOutlined />, label: 'Profile' }, // Profile menu entry
+    { key: 'settings', icon: <SettingOutlined />, label: 'Settings' }, // Settings entry
+    { type: 'divider' as const }, // Visual divider between groups
+    { key: 'logout', icon: <LogoutOutlined />, label: 'Logout', danger: true }, // Logout entry (danger)
   ];
 
-  const handleUserMenuClick = ({ key }: { key: string }) => {
-    if (key === 'logout') console.log('Logging out...');
-    else console.log(`Clicked: ${key}`);
+  const handleUserMenuClick = ({ key }: { key: string }) => { // Handle clicks on user menu items
+    if (key === 'logout') console.log('Logging out...'); // Placeholder: perform logout
+    else console.log(`Clicked: ${key}`); // Placeholder: handle other menu actions
   };
 
   return (
     <Header
       style={{
-        padding: '0 16px',
-        background: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderBottom: '1px solid #f0f0f0',
+        padding: '0 16px', // Horizontal padding inside header
+        background: '#fff', // White background for header
+        display: 'flex', // Use flexbox for layout
+        alignItems: 'center', // Vertically center items
+        justifyContent: 'space-between', // Space between left and right groups
+        borderBottom: '1px solid #f0f0f0', // Subtle bottom border for separation
       }}
     >
-      <Space>
+      <Space> {/* Left group: menu toggle + title */}
         <Button
-          type="text"
-          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          onClick={() => setCollapsed(!collapsed)}
-          style={{ fontSize: '16px', width: 64, height: 64 }}
+          type="text" // Text-style button (no background)
+          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} // Toggle icon based on collapsed state
+          onClick={() => setCollapsed(!collapsed)} // Toggle collapsed state when clicked
+          style={{ fontSize: '16px', width: 64, height: 64 }} // Fixed sizing for consistent touch target
         />
-        <Title level={4} style={{ margin: 0 }}>
-          Dashboard
+        <Title level={4} style={{ margin: 0 }}> {/* App title with zero margin to align with button */}
+          Dashboard {/* Visible title text */}
         </Title>
       </Space>
 
       <Dropdown
-        menu={{ items: userMenuItems, onClick: handleUserMenuClick }}
-        placement="bottomRight"
+        menu={{ items: userMenuItems, onClick: handleUserMenuClick }} // Attach menu items and click handler
+        placement="bottomRight" // Dropdown appears anchored to bottom-right of trigger
       >
-        <Space style={{ cursor: 'pointer' }}>
-          <Avatar icon={<UserOutlined />} />
-          <span>John Doe</span>
+        <Space style={{ cursor: 'pointer' }}> {/* Clickable area showing avatar and username */}
+          <Avatar icon={<UserOutlined />} /> {/* Avatar: shows user icon or image */}
+          <span>John Doe</span> {/* Static username placeholder; replace with dynamic user data */}
         </Space>
       </Dropdown>
     </Header>
   );
 };
 
-export default HeaderBar;
+export default HeaderBar; // Default export so layout can import and use this header component
