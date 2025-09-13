@@ -1,13 +1,12 @@
 import { Form, UploadProps, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { UserFormData } from "./actions/useCreateUserType";
 
 
 
   
 export default function useCreateUser() {
     const navigate = useNavigate();
-    const [form] = Form.useForm<UserFormData>();
+    const [form] = Form.useForm<any>();
   
     const uploadProps: UploadProps = {
       name: 'avatar',
@@ -29,7 +28,7 @@ export default function useCreateUser() {
       },
     };
   
-    const onFinish = (values: UserFormData) => {
+    const onFinish = (values: any) => {
       console.log('Form values:', values);
       message.success('User created successfully!');
       

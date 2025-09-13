@@ -3,18 +3,18 @@ import { TableColumnsType } from 'antd';
 import { UserOutlined, MailOutlined, PhoneOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Space, Avatar, Tag, Dropdown } from 'antd';
 import { getActionItems } from './actionItems';
-import { User } from './user';
+
 
 export const columns = (
   handleView: (userId: string) => void,
   handleEdit: (userId: string) => void,
   handleDelete: (userId: string) => void
-): TableColumnsType<User> => [
+): TableColumnsType<any> => [
   {
     title: 'User',
     dataIndex: 'name',
     key: 'name',
-    render: (text: string, record: User) => (
+    render: (text: string, record: any) => (
       <Space>
         <Avatar icon={<UserOutlined />} />
         <div>
@@ -67,7 +67,7 @@ export const columns = (
   {
     title: 'Actions',
     key: 'actions',
-    render: (_, record: User) => (
+    render: (_, record: any) => (
       <Dropdown 
         menu={{ 
           items: getActionItems(record, handleView, handleEdit, handleDelete),

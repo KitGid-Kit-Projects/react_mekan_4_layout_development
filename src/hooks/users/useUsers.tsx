@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { mockUsers } from './actions/mockUsers';
-import { User } from './actions/user';
 import { getActionItems } from './actions/actionItems';
 import { columns } from './actions/tableColumns';
 
@@ -36,7 +35,7 @@ export default function useUsers() {
     handleEdit,
     handleDelete,
     handleView,
-    getActionItems: (record: User) => getActionItems(record, handleView, handleEdit, handleDelete),
+    getActionItems: (record: any) => getActionItems(record, handleView, handleEdit, handleDelete),
     columns: columns(handleView, handleEdit, handleDelete)
   };
 }

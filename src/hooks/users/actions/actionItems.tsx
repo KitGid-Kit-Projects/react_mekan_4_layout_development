@@ -1,10 +1,10 @@
 import { UserOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 import type { MenuProps } from 'antd';
-import { User } from './user';
+
 
 export const getActionItems = (
-  record: User, 
+  record: any, 
   handleView: (userId: string) => void,
   handleEdit: (userId: string) => void,
   handleDelete: (userId: string) => void

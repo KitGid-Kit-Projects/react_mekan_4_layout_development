@@ -2,11 +2,9 @@ import React from 'react';
 import { Button } from 'antd';
 import { SaveOutlined, ClearOutlined } from '@ant-design/icons';
 
-interface FormActionsProps {
-  onReset: () => void;
-}
 
-const FormActions: React.FC<FormActionsProps> = ({ onReset }) => {
+
+const FormActions: React.FC<any> = ({ onReset }) => {
   return (
     <div style={{ 
       marginTop: 24, 
