@@ -1,19 +1,8 @@
 import { Form, UploadProps, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { UserFormData } from "./actions/useCreateUserType";
 
 
-interface UserFormData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    role: string;
-    status: boolean;
-    joinDate: any;
-    department: string;
-    bio: string;
-    avatar: any;
-  }
 
   
 export default function useCreateUser() {
