@@ -35,6 +35,7 @@ export default function useUsers() {
     console.log('View user:', userId); // log for debugging; could navigate to details page
   };
 
+  
   // Return the public API for components using this hook
   return {
     navigate, // expose navigate so consumers can perform navigation if they need

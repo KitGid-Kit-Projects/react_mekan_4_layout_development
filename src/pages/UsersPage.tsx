@@ -1,7 +1,7 @@
 import React from 'react'; // React core: required for JSX and component definitions
 import { Table, Input, Space } from 'antd'; // AntD primitives: Table for listing, Input for search, Space for spacing
 import { SearchOutlined } from '@ant-design/icons'; // Icon used inside the search input as a prefix
-import useUsers from './useUsers'; // Custom hook that provides users data, filtering and table columns
+import useUsers from '../hooks/useUsers'; // Custom hook that provides users data, filtering and table columns
 
 const UsersPage: React.FC = () => { // Define UsersPage as a React functional component (no props)
   // Destructure values returned by the custom hook:
