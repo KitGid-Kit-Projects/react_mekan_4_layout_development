@@ -2,40 +2,48 @@
 
 | No | Tree                                                                                        | Code Line Count | Path                                                                  |
 |----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|
-| 01 | App.tsx                                                                                     |                 | './src/App.tsx'                                                       |
-| 02 | └── AppLayout                                                                               |                 | './src/pages/AppLayout.tsx'                                           |
-| 03 |     ├── Sidebar {Sidebar Menu: AntD Application}                                            |                 | './src/components/Layout/Sidebar.tsx'                                 |
-| 04 |     ├── HeaderBar {Header: Dashboard Title}                                                 |                 | './src/components/Layout/HeaderBar.tsx'                               |
-| 05 |     ├── FooterBar {Footer: Ant Design Layout Demo ©2025 Created with ❤️}                    |                 | './src/components/Layout/FooterBar.tsx'                               |
+| 01 | App.tsx                                                                                     | 49              | './src/App.tsx'                                                       |
+| 02 | └── AppLayout                                                                               | 61              | './src/pages/AppLayout.tsx'                                           |
+| 03 |     ├── Sidebar                                                                             | 61              | './src/components/Layout/Sidebar.tsx'                                 |
+| 04 |     ├── HeaderBar                                                                           | 56              | './src/components/Layout/HeaderBar.tsx'                               |
+| 05 |     ├── FooterBar                                                                           | 17              | './src/components/Layout/FooterBar.tsx'                               |
 | 06 |     └── (Outlet → Routed Page Components)                                                   |                 |                                                                       |
-| 07 |         ├── Home                                                                            |                 | './src/pages/Home.tsx'                                                |
-| 08 |         │   ├── WelcomeSection {Welcome Message: Welcome to Dashboard}                      |                 | './src/components/Home/WelcomeSection.tsx'                            |
-| 09 |         │   ├── StatsSection                                                                |                 | './src/components/Home/StatsSection.tsx'                              |
-| 10 |         │   │   └── StatCard {Statistic Card: Title & Value (e.g. Active Users: 1128)}      |                 | './src/components/Home/StatCard.tsx'                                  |
-| 11 |         │   └── DashboardContent                                                            |                 | './src/components/Home/DashboardContent.tsx'                          |
-| 12 |         │       ├── ProjectProgressCard {Project Progress Overview}                         |                 | './src/components/Home/ProjectProgressCard.tsx'                       |
-| 13 |         │       │   └── ProgressItem {Progress Bar: Project Name & Percent}                 |                 | './src/components/Home/ProgressItem.tsx'                              |
-| 14 |         │       └── QuickActionsCard {Quick Actions List}                                   |                 | './src/components/Home/QuickActionsCard.tsx'                          |
-| 15 |         │           └── ActionButton {Action Button: e.g. Create New User}                  |                 | './src/components/Home/ActionButton.tsx'                              |
-| 16 |         ├── About                                                                           |                 | './src/pages/About.tsx'                                               |
-| 17 |         │   ├── AboutHeader {About Page Header}                                             |                 | './src/components/About/AboutHeader.tsx'                              |
-| 18 |         │   ├── FeaturesSection {Feature Cards: Key Features}                               |                 | './src/components/About/FeaturesSection.tsx'                          |
-| 19 |         │   ├── TechAndTimelineSection                                                      |                 | './src/components/About/TechAndTimelineSection.tsx'                   |
-| 20 |         │   │   ├── TimelineCard {Timeline: Project Milestones}                             |                 | './src/components/About/TimelineCard.tsx'                             |
-| 21 |         │   │   └── TechnologiesCard {Technologies Used List}                               |                 | './src/components/About/TechnologiesCard.tsx'                         |
-| 22 |         │   └── ArchitectureSection {Architecture Overview Card}                            |                 | './src/components/About/ArchitectureSection.tsx'                      |
-| 23 |         ├── Users {User Management Table}                                                   |                 | './src/pages/Users.tsx'                                               |
-| 24 |         ├── CreateUser {Create New User Form Page}                                          |                 | './src/pages/CreateUser.tsx'                                          |
-| 25 |         │   ├── BackButton {Back to Users Button}                                           |                 | './src/components/CreateUser/BackButton.tsx'                          |
-| 26 |         │   └── UserForm                                                                    |                 | './src/components/CreateUser/UserForm.tsx'                            |
-| 27 |         │       ├── NameFields {Input Fields: First Name, Last Name}                        |                 | './src/components/CreateUser/NameFields.tsx'                          |
-| 28 |         │       ├── ContactFields {Input Fields: Email Address, Phone Number}               |                 | './src/components/CreateUser/ContactFields.tsx'                       |
-| 29 |         │       ├── RoleDepartmentFields {Dropdowns: Role, Department}                      |                 | './src/components/CreateUser/RoleDepartmentFields.tsx'                |
-| 30 |         │       ├── DateStatusFields {Date Picker & Status Switch}                          |                 | './src/components/CreateUser/DateStatusFields.tsx'                    |
-| 31 |         │       ├── AvatarField {Profile Picture Upload}                                    |                 | './src/components/CreateUser/AvatarField.tsx'                         |
-| 32 |         │       ├── BioField {Bio Textarea}                                                 |                 | './src/components/CreateUser/BioField.tsx'                            |
-| 33 |         │       └── FormActions {Form Buttons: Reset, Create User}                          |                 | './src/components/CreateUser/FormActions.tsx'                         |
-| 34 |         └── NotFound {404 Not Found Page}                                                   |                 | './src/pages/NotFound.tsx'                                            |
+| 07 |         ├── Home                                                                            | 22              | './src/pages/Home.tsx'                                                |
+| 08 |         │   ├── WelcomeSection                                                              | 15              | './src/components/Home/WelcomeSection.tsx'                            |
+| 09 |         │   ├── StatsSection                                                                | 18              | './src/components/Home/StatsSection.tsx'                              |
+| 10 |         │   │   └── StatCard                                                                | 13              | './src/components/Home/StatCard.tsx'                                  |
+| 11 |         │   └── DashboardContent                                                            | 19              | './src/components/Home/DashboardContent.tsx'                          |
+| 12 |         │       ├── ProjectProgressCard                                                     | 20              | './src/components/Home/ProjectProgressCard.tsx'                       |
+| 13 |         │       │   └── ProgressItem                                                        | 16              | './src/components/Home/ProgressItem.tsx'                              |
+| 14 |         │       └── QuickActionsCard                                                        | 23              | './src/components/Home/QuickActionsCard.tsx'                          |
+| 15 |         │           └── ActionButton                                                        | 27              | './src/components/Home/ActionButton.tsx'                              |
+| 16 |         ├── About                                                                           | 17              | './src/pages/About.tsx'                                               |
+| 17 |         │   ├── AboutHeader                                                                 | 13              | './src/components/About/AboutHeader.tsx'                              |
+| 18 |         │   ├── FeaturesSection                                                             | 19              | './src/components/About/FeaturesSection.tsx'                          |
+| 19 |         │   ├── TechAndTimelineSection                                                      | 22              | './src/components/About/TechAndTimelineSection.tsx'                   |
+| 20 |         │   │   ├── TimelineCard                                                            | 18              | './src/components/About/TimelineCard.tsx'                             |
+| 21 |         │   │   └── TechnologiesCard                                                        | 15              | './src/components/About/TechnologiesCard.tsx'                         |
+| 22 |         │   └── ArchitectureSection                                                         | 14              | './src/components/About/ArchitectureSection.tsx'                      |
+| 23 |         ├── Users                                                                           | 46              | './src/pages/Users.tsx'                                               |
+| 24 |         │   └── useUsers                                                                    | 41              | './src/hooks/useUsers.tsx'                                            |
+| 25 |         │       ├── tableColumns                                                            | 54              | './src/hooks/tableColumns.tsx'                                        |
+| 26 |         │       └── actionItems                                                             | 24              | './src/hooks/actionItems.tsx'                                         |
+| 27 |         ├── CreateUser                                                                      | 27              | './src/pages/CreateUser.tsx'                                          |
+| 28 |         │   └── useCreateUser                                                               | 38              | './src/hooks/useCreateUser.tsx'                                       |
+| 29 |         │   ├── BackButton                                                                  | 11              | './src/components/CreateUser/BackButton.tsx'                          |
+| 30 |         │   └── UserForm                                                                    | 54              | './src/components/CreateUser/UserForm.tsx'                            |
+| 31 |         │       ├── NameFields                                                              | 28              | './src/components/CreateUser/NameFields.tsx'                          |
+| 32 |         │       ├── ContactFields                                                           | 27              | './src/components/CreateUser/ContactFields.tsx'                       |
+| 33 |         │       ├── RoleDepartmentFields                                                    | 32              | './src/components/CreateUser/RoleDepartmentFields.tsx'                |
+| 34 |         │       ├── DateStatusFields                                                        | 29              | './src/components/CreateUser/DateStatusFields.tsx'                    |
+| 35 |         │       ├── AvatarField                                                             | 18              | './src/components/CreateUser/AvatarField.tsx'                         |
+| 36 |         │       ├── BioField                                                                | 27              | './src/components/CreateUser/BioField.tsx'                            |
+| 37 |         │       └── FormActions                                                             | 24              | './src/components/CreateUser/FormActions.tsx'                         |
+| 38 |         ├── About                                                                           | 17              | './src/pages/About.tsx'                                               |
+| 39 |         │   └── useAbout                                                                    | 46              | './src/hooks/useAbout.tsx'                                            |
+| 40 |         ├── Home                                                                            | 22              | './src/pages/Home.tsx'                                                |
+| 41 |         │   └── useHome                                                                     | 28              | './src/hooks/useHome.tsx'                                             |
+| 42 |         └── NotFound                                                                        | 19              | './src/pages/NotFound.tsx'                                            |
 |----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|
-|    |                                                                      TOTAL CODE LINES       |                 |                                                                       |
+|    |                                                                      TOTAL CODE LINES       | 1088            |                                                                       |
 |----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|
