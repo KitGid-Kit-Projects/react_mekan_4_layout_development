@@ -1,84 +1,41 @@
 # Component Relation Diagram (CRD)
 
-| No | Tree                                                                                        | Code Lines | Path                                                                  |
-|----|---------------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------|
-| 01 | App.tsx                                                                                     | 36         | './src/App.tsx'                                                       |
-| 02 | └── [ConfigProvider]                                                                        |            | 'antd'                                                                |
-| 03 |     └── CrudExample                                                                         | 48         | './src/pages/CrudExample.tsx'                                         |
-| 04 |         │   ├──<props> formData:useCrudExample-> formData                                   |            |                                                                       |
-| 05 |         │   ├──<props> records:useCrudExample-> records                                     |            |                                                                       |
-| 06 |         │   ├──<props> handleInputChange:useCrudExample-> handleInputChange                 |            |                                                                       |
-| 07 |         │   ├──<props> handleSelectChange:useCrudExample-> handleSelectChange               |            |                                                                       |
-| 08 |         │   ├──<props> handleSubmit:useCrudExample-> handleSubmit                           |            |                                                                       |
-| 09 |         │   ├──<props> handleEdit:useCrudExample-> handleEdit                               |            |                                                                       |
-| 10 |         │   ├──<props> handleDelete:useCrudExample-> handleDelete                           |            |                                                                       |
-| 11 |         │   └──<props> handleCancelEdit:useCrudExample-> handleCancelEdit                   |            |                                                                       |
-| 12 |         ├── [Row] {Layout Container}                                                        |            | 'antd'                                                                |
-| 13 |         │   ├── [Col] {Form Column}                                                         |            | 'antd'                                                                |
-| 14 |         │   │   └── CreateUpdateCrudExample                                                 | 65         | './src/components/CreateUpdateCrudExample.tsx'                        |
-| 15 |         │   │       ├──<props> formData: @ -> formData                                      |            |                                                                       |
-| 16 |         │   │       ├──<props> handleInputChange: @ -> handleInputChange                    |            |                                                                       |
-| 17 |         │   │       ├──<props> handleSelectChange: @ -> handleSelectChange                  |            |                                                                       |
-| 18 |         │   │       ├──<props> handleSubmit: @-> handleSubmit                               |            |                                                                       |
-| 19 |         │   │       ├──<props> handleCancelEdit: @-> handleCancelEdit                       |            |                                                                       |
-| 20 |         │   │       └── Card {Form Card Container}                                          | 25         | './src/components/Card.tsx'                                           |
-| 21 |         │   │           ├── Input {Product Name Field}                                      | 30         | './src/components/Input.tsx'                                          |
-| 22 |         │   │           │   ├──<props> value: @ -> formData.name                            |            |                                                                       |
-| 23 |         │   │           │   ├──<props> handleInputChange:@-> handleInputChange              |            |                                                                       |
-| 24 |         │   │           │   └──<event> onChange:@-> handleInputChange                       |            |                                                                       |
-| 25 |         │   │           ├── SelectBox {Category Dropdown}                                   | 39         | './src/components/SelectBox.tsx'                                      |
-| 26 |         │   │           │   ├──<props> value: @ -> formData.category                        |            |                                                                       |
-| 27 |         │   │           │   ├──<props> handleSelectChange: @-> handleSelectChange           |            |                                                                       |
-| 28 |         │   │           │   └──<event> onChange:@-> handleSelectChange                      |            |                                                                       |
-| 29 |         │   │           ├── TextArea {Product Description Field}                            | 41         | './src/components/TextArea.tsx'                                       |
-| 30 |         │   │           │   ├──<props> value: @ -> formData.description                     |            |                                                                       |
-| 31 |         │   │           │   ├──<props> handleInputChange:@-> handleInputChange              |            |                                                                       |
-| 32 |         │   │           │   └──<event> onChange:handleInputChange                           |            |                                                                       |
-| 33 |         │   │           ├── Button {Cancel Edit Button}                                     | 32         | './src/components/Button.tsx'                                         |
-| 34 |         │   │           |   ├──<props> handleCancelEdit:@-> handleCancelEdit                |            |                                                                       |
-| 35 |         │   │           |   └──<event> onClick:handleCancelEdit                             |            |                                                                       |
-| 36 |         │   │           └── Button {Create/Update Button}                                   | 32         | './src/components/Button.tsx'                                         |
-| 37 |         │   │               ├──<props> handleSubmit:@-> handleSubmit                        |            |                                                                       |
-| 38 |         │   │               └──<event> onClick:handleSubmit                                 |            |                                                                       |
-| 39 |         │   └── [Col] {Table Column}                                                        |            | 'antd'                                                                |
-| 40 |         │       └── TableCrudExample                                                        | 27         | './src/components/TableCrudExample.tsx'                               |
-| 41 |         │           ├──<props> records:@ -> records                                         |            |                                                                       |
-| 42 |         │           ├──<props> handleEdit: @-> handleEdit                                   |            |                                                                       |
-| 43 |         │           ├──<props> handleDelete: @-> handleDelete                               |            |                                                                       |
-| 44 |         │           └── Card {Table Card Container}                                         | 25         | './src/components/Card.tsx'                                           |
-| 45 |         │               └── Table {CRUD Data Table}                                         | 69         | './src/components/Table.tsx'                                          |
-| 46 |         │                   ├──<props> data: @ -> records                                   |            |                                                                       |
-| 47 |         │                   ├── [th] {Name Column}                                          |            | 'native HTML element'                                                 |
-| 48 |         │                   ├── [th] {Category Column}                                      |            | 'native HTML element'                                                 |
-| 49 |         │                   ├── [th] {Description Column}                                   |            | 'native HTML element'                                                 |
-| 50 |         │                   ├── [th] {Created At Column}                                    |            | 'native HTML element'                                                 |
-| 51 |         │                   └── [th] {Action Column}                                        |            | 'native HTML element'                                                 |
-| 52 |         │                            ├── [AntButton] {Edit Button}                          |            | 'antd'                                                                |
-| 53 |         │                            │    ├──<props> handleEdit:@-> handleEdit              |            |                                                                       |
-| 54 |         │                            │    └──<event> onClick:handleEdit                     |            |                                                                       |
-| 55 |         │                            └── [AntButton] {Delete Button}                        |            | 'antd'                                                                |
-| 56 |         │                                 ├──<props> handleDelete:@-> handleDelete          |            |                                                                       |
-| 57 |         │                                 └──<event> onClick:handleDelete                   |            |                                                                       |
-| 58 |         └── useCrudExample                                                                  | 129        | './src/hooks/useCrudExample.tsx'                                      |
-| 59 |             ├──<data-storage> formData                                                      |            |                                                                       |
-| 60 |             ├──<data-storage> records                                                       |            |                                                                       |
-| 61 |             ├──<setter> formData:handleInputChange                                          |            |                                                                       |
-| 62 |             ├──<setter> formData:handleSelectChange                                         |            |                                                                       |
-| 63 |             ├──<setter> records:handleSubmit                                                |            |                                                                       |
-| 64 |             ├──<setter> records:handleEdit                                                  |            |                                                                       |
-| 65 |             ├──<setter> records:handleDelete                                                |            |                                                                       |
-| 66 |             └──<setter> editingRecord:handleCancelEdit                                      |            |                                                                       |
-|    |                                                                                             |            |                                                                       |
-|----|---------------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------|
-|    |                                                                      TOTAL CODE LINES       | 541        |                                                                       |
-|----|---------------------------------------------------------------------------------------------|------------|-----------------------------------------------------------------------|
-
-## Legend
-
-- `<props>` ➝ Component props/attributes/types passed to components
-- `<event>` ➝ Events bound to handlers (onChange, onClick)
-- `<data-storage>` ➝ In-memory data managed by the hook
-- `<setter>` ➝ Setter functions that update state
-- `[ComponentName]` = Library components
-- `ComponentName` = Developer components
-- `{Description}` = UI element purpose/content
+| No | Tree                                                                                        | Code Line Count | Path                                                                  |
+|----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|
+| 01 | App.tsx                                                                                     |                 | './src/App.tsx'                                                       |
+| 02 | └── AppLayout                                                                               |                 | './src/pages/AppLayout.tsx'                                           |
+| 03 |     ├── Sidebar {Sidebar Menu: AntD Application}                                            |                 | './src/components/Layout/Sidebar.tsx'                                 |
+| 04 |     ├── HeaderBar {Header: Dashboard Title}                                                 |                 | './src/components/Layout/HeaderBar.tsx'                               |
+| 05 |     ├── FooterBar {Footer: Ant Design Layout Demo ©2025 Created with ❤️}                    |                 | './src/components/Layout/FooterBar.tsx'                               |
+| 06 |     └── (Outlet → Routed Page Components)                                                   |                 |                                                                       |
+| 07 |         ├── Home                                                                            |                 | './src/pages/Home.tsx'                                                |
+| 08 |         │   ├── WelcomeSection {Welcome Message: Welcome to Dashboard}                      |                 | './src/components/Home/WelcomeSection.tsx'                            |
+| 09 |         │   ├── StatsSection                                                                |                 | './src/components/Home/StatsSection.tsx'                              |
+| 10 |         │   │   └── StatCard {Statistic Card: Title & Value (e.g. Active Users: 1128)}      |                 | './src/components/Home/StatCard.tsx'                                  |
+| 11 |         │   └── DashboardContent                                                            |                 | './src/components/Home/DashboardContent.tsx'                          |
+| 12 |         │       ├── ProjectProgressCard {Project Progress Overview}                         |                 | './src/components/Home/ProjectProgressCard.tsx'                       |
+| 13 |         │       │   └── ProgressItem {Progress Bar: Project Name & Percent}                 |                 | './src/components/Home/ProgressItem.tsx'                              |
+| 14 |         │       └── QuickActionsCard {Quick Actions List}                                   |                 | './src/components/Home/QuickActionsCard.tsx'                          |
+| 15 |         │           └── ActionButton {Action Button: e.g. Create New User}                  |                 | './src/components/Home/ActionButton.tsx'                              |
+| 16 |         ├── About                                                                           |                 | './src/pages/About.tsx'                                               |
+| 17 |         │   ├── AboutHeader {About Page Header}                                             |                 | './src/components/About/AboutHeader.tsx'                              |
+| 18 |         │   ├── FeaturesSection {Feature Cards: Key Features}                               |                 | './src/components/About/FeaturesSection.tsx'                          |
+| 19 |         │   ├── TechAndTimelineSection                                                      |                 | './src/components/About/TechAndTimelineSection.tsx'                   |
+| 20 |         │   │   ├── TimelineCard {Timeline: Project Milestones}                             |                 | './src/components/About/TimelineCard.tsx'                             |
+| 21 |         │   │   └── TechnologiesCard {Technologies Used List}                               |                 | './src/components/About/TechnologiesCard.tsx'                         |
+| 22 |         │   └── ArchitectureSection {Architecture Overview Card}                            |                 | './src/components/About/ArchitectureSection.tsx'                      |
+| 23 |         ├── Users {User Management Table}                                                   |                 | './src/pages/Users.tsx'                                               |
+| 24 |         ├── CreateUser {Create New User Form Page}                                          |                 | './src/pages/CreateUser.tsx'                                          |
+| 25 |         │   ├── BackButton {Back to Users Button}                                           |                 | './src/components/CreateUser/BackButton.tsx'                          |
+| 26 |         │   └── UserForm                                                                    |                 | './src/components/CreateUser/UserForm.tsx'                            |
+| 27 |         │       ├── NameFields {Input Fields: First Name, Last Name}                        |                 | './src/components/CreateUser/NameFields.tsx'                          |
+| 28 |         │       ├── ContactFields {Input Fields: Email Address, Phone Number}               |                 | './src/components/CreateUser/ContactFields.tsx'                       |
+| 29 |         │       ├── RoleDepartmentFields {Dropdowns: Role, Department}                      |                 | './src/components/CreateUser/RoleDepartmentFields.tsx'                |
+| 30 |         │       ├── DateStatusFields {Date Picker & Status Switch}                          |                 | './src/components/CreateUser/DateStatusFields.tsx'                    |
+| 31 |         │       ├── AvatarField {Profile Picture Upload}                                    |                 | './src/components/CreateUser/AvatarField.tsx'                         |
+| 32 |         │       ├── BioField {Bio Textarea}                                                 |                 | './src/components/CreateUser/BioField.tsx'                            |
+| 33 |         │       └── FormActions {Form Buttons: Reset, Create User}                          |                 | './src/components/CreateUser/FormActions.tsx'                         |
+| 34 |         └── NotFound {404 Not Found Page}                                                   |                 | './src/pages/NotFound.tsx'                                            |
+|----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|
+|    |                                                                      TOTAL CODE LINES       |                 |                                                                       |
+|----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|

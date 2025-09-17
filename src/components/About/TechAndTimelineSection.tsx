@@ -1,7 +1,7 @@
 import React from 'react'; // React core to allow JSX and component definitions
 import { Row, Col, Card, Tag, Typography } from 'antd'; // Ant Design layout / display primitives used across child components
-import TechnologiesCard from './TechnologiesCard'; // Child component that renders the "Technologies Used" card
-import TimelineCard from './TimelineCard'; // Child component that renders the "Development Timeline" card
+import TechnologiesCard from './TechnologiesCard.tsx'; // Child component that renders the "Technologies Used" card
+import TimelineCard from './TimelineCard.tsx'; // Child component that renders the "Development Timeline" card
 
 const TechAndTimelineSection: React.FC = () => { // Functional component: groups technologies + timeline into a responsive two-column row
   return (

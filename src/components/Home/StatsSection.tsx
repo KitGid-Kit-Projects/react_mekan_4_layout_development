@@ -1,6 +1,6 @@
 import React from 'react'; // React core: required for JSX and component definitions
 import { Row, Col } from 'antd'; // Ant Design grid primitives used to layout stat cards
-import StatCard from './StatCard'; // Reusable StatCard component that renders a single statistic
+import StatCard from './StatCard.tsx'; // Reusable StatCard component that renders a single statistic
 
 // StatsSection: renders a responsive row of StatCard components from statsData prop
 const StatsSection: React.FC<any> = ({ statsData }) => {

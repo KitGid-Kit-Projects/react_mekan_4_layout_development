@@ -1,7 +1,7 @@
 import React from 'react'; // Import React to enable JSX and component typing
 import { Row, Col } from 'antd'; // Ant Design grid primitives used to layout the dashboard columns
-import ProjectProgressCard from './ProjectProgressCard'; // Left column card showing project progress bars
-import QuickActionsCard from './QuickActionsCard'; // Right column card containing quick action buttons
+import ProjectProgressCard from './ProjectProgressCard.tsx'; // Left column card showing project progress bars
+import QuickActionsCard from './QuickActionsCard.tsx'; // Right column card containing quick action buttons
 
 // DashboardContent props:
 // - navigate: function passed from parent to perform navigation actions (e.g., react-router navigate)

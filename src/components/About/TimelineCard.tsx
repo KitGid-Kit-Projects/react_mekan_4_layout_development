@@ -1,6 +1,6 @@
 import React from 'react'; // import React to enable JSX and component definitions
 import { Card, Timeline } from 'antd'; // import AntD Card and Timeline UI components
-import useAbout from '@/hooks/useAbout'; // import custom hook that provides about-page data (timeLine array)
+import useAbout from '../../hooks/useAbout.tsx'; // import custom hook that provides about-page data (timeLine array)
 
 /* TimelineCard component:
    - renders a Card containing an Ant Design Timeline

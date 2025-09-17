@@ -1,8 +1,8 @@
 import React from 'react'; // Import React to enable JSX and component definitions
-import useHome from '@/hooks/useHome'; // Custom hook that provides navigation and stats data for the dashboard
-import WelcomeSection from '@/components/Home/WelcomeSection'; // Top welcome section component
-import StatsSection from '@/components/Home/StatsSection'; // Section that renders statistic cards
-import DashboardContent from '@/components/Home/DashboardContent'; // Main dashboard content (progress + actions)
+import useHome from '../hooks/useHome.tsx'; // Custom hook that provides navigation and stats data for the dashboard
+import WelcomeSection from '../components/Home/WelcomeSection.tsx'; // Top welcome section component
+import StatsSection from '../components/Home/StatsSection.tsx'; // Section that renders statistic cards
+import DashboardContent from '../components/Home/DashboardContent.tsx'; // Main dashboard content (progress + actions)
 
 const Home: React.FC = () => { // Define Home as a React functional component (no props expected)
   const { navigate, statsData } = useHome(); // Destructure navigate function and prepared stats data from the hook

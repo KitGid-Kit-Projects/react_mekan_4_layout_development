@@ -1,6 +1,6 @@
 import React from 'react'; // Import React to enable JSX and define the functional component
 import { Card, Progress } from 'antd'; // Import AntD Card and Progress (Progress imported here though individual items use ProgressItem)
-import ProgressItem from './ProgressItem'; // Import the small reusable ProgressItem component
+import ProgressItem from './ProgressItem.tsx'; // Import the small reusable ProgressItem component
 
 const ProjectProgressCard: React.FC = () => { // Define ProjectProgressCard as a React functional component
   return (

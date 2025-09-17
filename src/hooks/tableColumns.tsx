@@ -1,7 +1,7 @@
 // src/hooks/tableColumns.tsx
 import { TableColumnsType, Button, Space, Avatar, Tag, Dropdown } from 'antd';
 import { UserOutlined, MailOutlined, PhoneOutlined, MoreOutlined } from '@ant-design/icons';
-import { getActionItems } from './actionItems';
+import { getActionItems } from './actionItems.tsx';
 
 // Export a factory that returns the Table columns configured with the provided row action handlers
 export const columns = (

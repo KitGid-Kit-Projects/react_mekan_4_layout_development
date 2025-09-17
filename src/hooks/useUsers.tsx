@@ -3,9 +3,9 @@ import { useState } from 'react'; // useState: local state for search text
 import { useNavigate } from 'react-router-dom'; // useNavigate: programmatic navigation helper
 
 // Import mock data and helper builders used to power the users table
-import { mockUsers } from './mockUsers'; // mockUsers: static dataset used for demo/listing
-import { getActionItems } from './actionItems'; // getActionItems: builds menu items for row actions
-import { columns } from './tableColumns'; // columns: factory that returns table column definitions
+import { mockUsers } from './mockUsers.tsx'; // mockUsers: static dataset used for demo/listing
+import { getActionItems } from './actionItems.tsx'; // getActionItems: builds menu items for row actions
+import { columns } from './tableColumns.tsx'; // columns: factory that returns table column definitions
 
 // Default export: custom hook that encapsulates users list state, filters and handlers
 export default function useUsers() {

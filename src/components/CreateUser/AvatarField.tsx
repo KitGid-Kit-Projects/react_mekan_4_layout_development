@@ -1,7 +1,7 @@
 import React from 'react'; // Import React to enable JSX and component definitions
 import { Form, Upload, Button, Col } from 'antd'; // Ant Design components used in this field: Form.Item, Upload wrapper, Button, Col layout
 import { UploadOutlined } from '@ant-design/icons'; // Icon shown inside the upload button
-import useCreateUser from '@/hooks/useCreateUser'; // Custom hook providing form helpers and uploadProps for this form
+import useCreateUser from '../../hooks/useCreateUser.tsx'; // Custom hook providing form helpers and uploadProps for this form
 
 const AvatarField: React.FC = () => { // Define AvatarField as a functional component (no props)
   const { uploadProps } = useCreateUser(); // Destructure uploadProps from the hook (controls beforeUpload, onChange, file list, etc.)

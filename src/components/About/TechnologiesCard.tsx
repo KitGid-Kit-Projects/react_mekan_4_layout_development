@@ -1,6 +1,6 @@
 import React from 'react'; // Import React to enable JSX and React types (required by some toolchains)
 import { Card, Tag, Typography } from 'antd'; // Ant Design UI primitives: Card container, Tag badges, Typography text
-import useAbout from '@/hooks/useAbout'; // Custom hook providing about-page data (technologies array)
+import useAbout from '../../hooks/useAbout.tsx'; // Custom hook providing about-page data (technologies array)
 
 const { Paragraph } = Typography; // Destructure Paragraph from Typography for concise usage
 

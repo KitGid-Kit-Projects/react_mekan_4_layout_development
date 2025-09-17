@@ -1,6 +1,6 @@
 import React from 'react'; // React core: enables JSX and component definitions
 import { Card, Space } from 'antd'; // Ant Design Card for container, Space for vertical spacing/layout
-import ActionButton from './ActionButton'; // Reusable action button component used for each quick action
+import ActionButton from './ActionButton.tsx'; // Reusable action button component used for each quick action
 
 
 const QuickActionsCard: React.FC<any> = ({ navigate }) => { // Component receives `navigate` to perform route changes

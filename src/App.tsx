@@ -5,12 +5,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Import Ant Design ConfigProvider to supply theme tokens app-wide
 import { ConfigProvider } from 'antd';
 // Import the app layout and page components used by the router
-import AppLayout from "./pages/AppLayout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Users from "./pages/Users";
-import CreateUser from "./pages/CreateUser";
-import NotFound from "./pages/NotFound";
+import AppLayout from "./pages/AppLayout.tsx";
+import Home from "./pages/Home.tsx";
+import About from "./pages/About.tsx";
+import Users from "./pages/Users.tsx";
+import CreateUser from "./pages/CreateUser.tsx";
+import NotFound from "./pages/NotFound.tsx";
 
 // Create a React Query client instance used by QueryClientProvider
 const queryClient = new QueryClient();

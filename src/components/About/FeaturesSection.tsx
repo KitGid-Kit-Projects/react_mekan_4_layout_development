@@ -1,6 +1,6 @@
 import React from 'react'; // Import React to enable JSX and React types (required by some toolchains)
 import { Typography, Row, Col, Card } from 'antd'; // Import Ant Design primitives used in this component
-import useAbout from '@/hooks/useAbout'; // Import custom hook that provides about page data (features array)
+import useAbout from '../../hooks/useAbout.tsx';
 
 const { Title } = Typography; // Destructure Title for concise usage in JSX
 

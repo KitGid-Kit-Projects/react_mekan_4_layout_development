@@ -1,13 +1,13 @@
 import React from 'react'; // React core: required for JSX and component typing
 import { Form, Row, Col } from 'antd'; // Ant Design form and grid primitives used to build the form layout
-import useCreateUser from '@/hooks/useCreateUser'; // Custom hook encapsulating form state, handlers and helpers
-import NameFields from './NameFields'; // Composite fields for first/last name
-import ContactFields from './ContactFields'; // Composite fields for email/phone
-import RoleDepartmentFields from './RoleDepartmentFields'; // Selects for role and department
-import DateStatusFields from './DateStatusFields'; // Date picker + status switch
-import AvatarField from './AvatarField'; // File upload field for profile picture
-import BioField from './BioField'; // Textarea for bio/description
-import FormActions from './FormActions'; // Action buttons (reset/submit)
+import useCreateUser from '../../hooks/useCreateUser.tsx'; // Custom hook encapsulating form state, handlers and helpers
+import NameFields from './NameFields.tsx'; // Composite fields for first/last name
+import ContactFields from './ContactFields.tsx'; // Composite fields for email/phone
+import RoleDepartmentFields from './RoleDepartmentFields.tsx'; // Selects for role and department
+import DateStatusFields from './DateStatusFields.tsx'; // Date picker + status switch
+import AvatarField from './AvatarField.tsx'; // File upload field for profile picture
+import BioField from './BioField.tsx'; // Textarea for bio/description
+import FormActions from './FormActions.tsx'; // Action buttons (reset/submit)
 
 /**
  * UserForm
