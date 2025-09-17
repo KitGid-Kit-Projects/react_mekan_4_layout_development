@@ -4,7 +4,7 @@ import {
   PlusOutlined, // Icon shown inside the "Create New User" button
   SearchOutlined, // Icon used as prefix in the search input
 } from '@ant-design/icons'; // Ant Design icons package
-import useUsers from '../hooks/useUsers'; // Custom hook that provides users data, filters and table configuration
+import useUsers from '../hooks/useUsers.tsx'; // Custom hook that provides users data, filters and table configuration
 
 const { Title } = Typography; // Destructure Title for concise usage in JSX
 const { Search } = Input; // Destructure Search for antd Input.Search (we're using Input with prefix; preserve naming)

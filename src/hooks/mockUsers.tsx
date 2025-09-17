@@ -1,5 +1,3 @@
-
-
 export const mockUsers: any[] = [
   {
     id: '1',

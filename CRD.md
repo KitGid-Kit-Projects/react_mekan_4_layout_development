@@ -27,6 +27,7 @@
 | 23 |         ├── Users                                                                           | 46              | './src/pages/Users.tsx'                                               |
 | 24 |         │   └── useUsers                                                                    | 41              | './src/hooks/useUsers.tsx'                                            |
 | 25 |         │       ├── tableColumns                                                            | 54              | './src/hooks/tableColumns.tsx'                                        |
+| 25 |         │       ├── mockUser                                                                | 47              | './src/hooks/mockUsers.tsx'                                           |
 | 26 |         │       └── actionItems                                                             | 24              | './src/hooks/actionItems.tsx'                                         |
 | 27 |         ├── CreateUser                                                                      | 27              | './src/pages/CreateUser.tsx'                                          |
 | 28 |         │   └── useCreateUser                                                               | 38              | './src/hooks/useCreateUser.tsx'                                       |
@@ -45,5 +46,5 @@
 | 41 |         │   └── useHome                                                                     | 28              | './src/hooks/useHome.tsx'                                             |
 | 42 |         └── NotFound                                                                        | 19              | './src/pages/NotFound.tsx'                                            |
 |----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|
-|    |                                                                      TOTAL CODE LINES       | 1088            |                                                                       |
+|    |                                                                      TOTAL CODE LINES       | 1135            |                                                                       |
 |----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|
