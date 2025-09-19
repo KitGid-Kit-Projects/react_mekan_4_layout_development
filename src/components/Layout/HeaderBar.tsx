@@ -19,10 +19,7 @@ const HeaderBar: React.FC<any> = ({ collapsed, setCollapsed }) => { // HeaderBar
     { key: 'logout', icon: <LogoutOutlined />, label: 'Logout', danger: true }, // Logout entry (danger)
   ];
 
-  const handleUserMenuClick = ({ key }: { key: string }) => { // Handle clicks on user menu items
-    if (key === 'logout') console.log('Logging out...'); // Placeholder: perform logout
-    else console.log(`Clicked: ${key}`); // Placeholder: handle other menu actions
-  };
+  
 
   return (
     <Header
@@ -48,7 +45,7 @@ const HeaderBar: React.FC<any> = ({ collapsed, setCollapsed }) => { // HeaderBar
       </Space>
 
       <Dropdown
-        menu={{ items: userMenuItems, onClick: handleUserMenuClick }} // Attach menu items and click handler
+        menu={{ items: userMenuItems }} // Attach menu items and click handler
         placement="bottomRight" // Dropdown appears anchored to bottom-right of trigger
       >
         <Space style={{ cursor: 'pointer' }}> {/* Clickable area showing avatar and username */}
