@@ -36,7 +36,7 @@ const App = () => (
             <Route path="users" element={<h1>Users Page</h1>} />
             <Route path="create-user" element={<h1>Create User Page</h1>} />
           </Route>
-
+  
         </Routes>
       </BrowserRouter>
     </ConfigProvider>
