@@ -26,23 +26,11 @@
 | 22 |         │   │   ├── TimelineCard                                                            | 18              | './src/components/About/TimelineCard.tsx'                             |
 | 23 |         │   │   └── TechnologiesCard                                                        | 15              | './src/components/About/TechnologiesCard.tsx'                         |
 | 24 |         │   └── ArchitectureSection                                                         | 14              | './src/components/About/ArchitectureSection.tsx'                      |
-| 25 |         ├── Users                                                                           | 46              | './src/pages/Users.tsx'                                               |
-| 26 |         │   ├── useUsers                                                                    | 41              | './src/hooks/useUsers.tsx'                                            |
-| 27 |         │   │   ├── tableColumns                                                            | 54              | './src/hooks/tableColumns.tsx'                                        |
-| 28 |         │   │   ├── mockUser                                                                | 47              | './src/hooks/mockUsers.tsx'                                           |
-| 29 |         │   │   └── actionItems                                                             | 24              | './src/hooks/actionItems.tsx'                                         |
-| 30 |         ├── CreateUser                                                                      | 27              | './src/pages/CreateUser.tsx'                                          |
-| 31 |         │   ├── useCreateUser                                                               | 38              | './src/hooks/useCreateUser.tsx'                                       |
-| 32 |         │   ├── BackButton                                                                  | 11              | './src/components/CreateUser/BackButton.tsx'                          |
-| 33 |         │   └── UserForm                                                                    | 54              | './src/components/CreateUser/UserForm.tsx'                            |
-| 34 |         │       ├── NameFields                                                              | 28              | './src/components/CreateUser/NameFields.tsx'                          |
-| 35 |         │       ├── ContactFields                                                           | 27              | './src/components/CreateUser/ContactFields.tsx'                       |
-| 36 |         │       ├── RoleDepartmentFields                                                    | 32              | './src/components/CreateUser/RoleDepartmentFields.tsx'                |
-| 37 |         │       ├── DateStatusFields                                                        | 29              | './src/components/CreateUser/DateStatusFields.tsx'                    |
-| 38 |         │       ├── AvatarField                                                             | 18              | './src/components/CreateUser/AvatarField.tsx'                         |
-| 39 |         │       ├── BioField                                                                | 27              | './src/components/CreateUser/BioField.tsx'                            |
-| 40 |         │       └── FormActions                                                             | 24              | './src/components/CreateUser/FormActions.tsx'                         |
-| 41 |         └── NotFound                                                                        | 19              | './src/pages/NotFound.tsx'                                            |
+| 25 |         └── Users                                                                           | 46              | './src/pages/Users.tsx'                                               |
+| 26 |             └── useUsers                                                                    | 41              | './src/hooks/useUsers.tsx'                                            |
+| 27 |                 ├── tableColumns                                                            | 54              | './src/hooks/tableColumns.tsx'                                        |
+| 28 |                 ├── mockUser                                                                | 47              | './src/hooks/mockUsers.tsx'                                           |
+| 29 |                 └── actionItems                                                             | 24              | './src/hooks/actionItems.tsx'                                         |
 |----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|
-|    |                                                                      TOTAL CODE LINES       | 1135            |                                                                       |
+|    |                                                                      TOTAL CODE LINES       | 785             |                                                                       |
 |----|---------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------------|

@@ -9,8 +9,6 @@ import AppLayout from "./pages/AppLayout.tsx";
 import Home from "./pages/Home.tsx";
 import About from "./pages/About.tsx";
 import Users from "./pages/Users.tsx";
-import CreateUser from "./pages/CreateUser.tsx";
-import NotFound from "./pages/NotFound.tsx";
 
 // Create a React Query client instance used by QueryClientProvider
 const queryClient = new QueryClient();
@@ -39,11 +37,9 @@ const App = () => (
             {/* Nested routes inside AppLayout for different pages */}
             <Route path="about" element={<About />} /> {/* /about */}
             <Route path="users" element={<Users />} /> {/* /users */}
-            <Route path="create-user" element={<CreateUser />} /> {/* /create-user */}
+            <Route path="create-user" element={<h1>Create User Page</h1>} /> {/* /create-user */}
           </Route>
 
-          {/* Fallback route: render NotFound for any unmatched path ("404") */}
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </ConfigProvider>
