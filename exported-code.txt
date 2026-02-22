@@ -1,0 +1,2027 @@
+************* ./src/components/CreateUser/FormActions.tsx ************
+import React from 'react'; // React core: required for JSX and defining React components
+import { Button } from 'antd'; // Ant Design Button used for form actions (reset / submit)
+import { SaveOutlined, ClearOutlined } from '@ant-design/icons'; // Icons used inside the buttons
+
+const FormActions: React.FC<any> = ({ onReset }) => { // Component: receives onReset callback via props
+  return (
+    // Container: aligns action buttons to the right, adds spacing and wraps on small screens
+    <div style={{ 
+      marginTop: 24, /* spacing above the actions to separate from form fields */
+      display: 'flex', /* use flexbox to align buttons horizontally */
+      gap: 16, /* gap between buttons */
+      justifyContent: 'flex-end', /* align buttons to the right */
+      flexWrap: 'wrap' /* allow buttons to wrap to next line on narrow viewports */
+    }}>
+      {/* Reset button: triggers the provided onReset handler to clear or reset the form */}
+      <Button 
+        icon={<ClearOutlined />} /* icon: shows a clear/erase affordance inside the button */
+        onClick={onReset} /* onClick: call the onReset prop when pressed */
+        size="large" /* larger size for better touch targets */
+      >
+        Reset Form {/* visible label describing the action */}
+      </Button>
+
+      {/* Submit button: primary action for creating/submitting the form */}
+      <Button 
+        type="primary" /* primary style denotes main action */
+        htmlType="submit" /* submits the surrounding form when clicked */
+        icon={<SaveOutlined />} /* icon: save/create affordance */
+        size="large" /* match size with reset button for visual consistency */
+      >
+        Create User {/* visible label for the submit action */}
+      </Button>
+    </div>
+  );
+};
+
+export default FormActions; // Default export so parent forms/pages can import and use these actions
+
+************* ./src/components/CreateUser/BackButton.tsx ************
+import React from 'react'; // Import React to enable JSX and define functional components
+import { Button, Space } from 'antd'; // Import Ant Design Button and Space for layout and controls
+import { ArrowLeftOutlined } from '@ant-design/icons'; // Import left-arrow icon for visual affordance
+
+ 
+
+const BackButton: React.FC<any> = ({ onBack }) => { // Define BackButton component; receives onBack callback prop
+  return (
+    <div style={{ marginBottom: 24 }}> {/* Container div: adds spacing below the button group */}
+      <Space> {/* Space: arranges children horizontally with consistent gap */}
+        <Button 
+          icon={<ArrowLeftOutlined />} /* Icon: left arrow shown inside the button to indicate "back" */
+          onClick={onBack} /* onClick: calls the provided onBack handler when the button is clicked */
+        >
+          Back to Users {/* Visible label inside the button that communicates the action */}
+        </Button>
+      </Space>
+    </div>
+  );
+};
+
+export default BackButton; // Default export so parent pages (CreateUser/Users) can import and use this component
+
+************* ./src/components/CreateUser/NameFields.tsx ************
+import React from 'react'; // React core import required for JSX and component definitions
+import { Form, Input, Col } from 'antd'; // Ant Design: Form controls, Input field, responsive column
+import { UserOutlined } from '@ant-design/icons'; // Icon used as input prefix to indicate user/name fields
+
+const NameFields: React.FC = () => { // Define NameFields as a functional React component (no props expected)
+  return (
+    <> {/* Fragment groups the two Col elements without adding an extra DOM node */}
+      <Col xs={24} sm={12}> {/* Left column: full width on extra-small screens, half width on small+ screens */}
+        <Form.Item
+          label="First Name" /* Label displayed above the input to describe the field */
+          name="firstName" /* Key used by the parent AntD Form for this field's value */
+          rules={[ /* Validation rules applied by AntD Form for this field */
+            { required: true, message: 'Please enter first name!' }, /* Required check with message */
+            { min: 2, message: 'First name must be at least 2 characters!' }, /* Minimum length rule */
+          ]}
+        >
+          <Input 
+            prefix={<UserOutlined />} /* Prefix icon inside the input to indicate it's a name field */
+            placeholder="Enter first name" /* Placeholder guiding the user what to type */
+            size="large" /* Size prop increases input height for better accessibility/touch */
+          />
+        </Form.Item>
+      </Col>
+
+      <Col xs={24} sm={12}> {/* Right column: full width on extra-small, half width on small+ */}
+        <Form.Item
+          label="Last Name" /* Label shown above the last name input */
+          name="lastName" /* Form key for binding last name value */
+          rules={[ /* Validation rules for last name field */
+            { required: true, message: 'Please enter last name!' }, /* Required validation */
+            { min: 2, message: 'Last name must be at least 2 characters!' }, /* Minimum length validation */
+          ]}
+        >
+          <Input 
+            prefix={<UserOutlined />} /* Reuse user icon as prefix for visual consistency */
+            placeholder="Enter last name" /* Placeholder example for last name */
+            size="large" /* Keep size consistent with first name input */
+          />
+        </Form.Item>
+      </Col>
+    </>
+  );
+};
+
+export default NameFields; // Default export so parent CreateUser form can import and render these fields
+
+************* ./src/components/CreateUser/ContactFields.tsx ************
+import React from 'react'; // Import React to enable JSX and define functional components
+import { Form, Input, Col } from 'antd'; // Import AntD form and layout primitives used in these fields
+import { MailOutlined, PhoneOutlined } from '@ant-design/icons'; // Import icons used as input prefixes
+
+const ContactFields: React.FC = () => { // Define ContactFields as a React functional component (no props)
+  return (
+    <> {/* Fragment groups the two Col elements without adding an extra DOM node */}
+      <Col xs={24} sm={12}> {/* Left column: full width on xs, half width on sm+ */}
+        <Form.Item
+          label="Email Address" /* Label shown above the email input */
+          name="email" /* Field key used by the parent AntD Form (form values under 'email') */
+          rules={[ /* Validation rules applied by AntD Form for the email field */
+            { required: true, message: 'Please enter email address!' }, /* Required rule with message */
+            { type: 'email', message: 'Please enter a valid email!' }, /* Email format validation rule */
+          ]}
+        >
+          <Input 
+            prefix={<MailOutlined />} /* Icon shown inside the input to indicate email */
+            placeholder="Enter email address" /* Placeholder guiding the user */
+            size="large" /* Larger size for better touch targets */
+          />
+        </Form.Item>
+      </Col>
+
+      <Col xs={24} sm={12}> {/* Right column: full width on xs, half width on sm+ */}
+        <Form.Item
+          label="Phone Number" /* Label shown above the phone input */
+          name="phone" /* Field key used by the parent AntD Form (form values under 'phone') */
+          rules={[ /* Validation rules applied by AntD Form for the phone field */
+            { required: true, message: 'Please enter phone number!' }, /* Required rule with message */
+            { pattern: /^\+?[\d\s\-\(\)]+$/, message: 'Please enter a valid phone number!' }, /* Simple phone regex validation */
+          ]}
+        >
+          <Input 
+            prefix={<PhoneOutlined />} /* Icon shown inside the input to indicate phone */
+            placeholder="+1 (555) 123-4567" /* Placeholder example of expected format */
+            size="large" /* Larger size for consistent UI with email field */
+          />
+        </Form.Item>
+      </Col>
+    </>
+  );
+};
+
+export default ContactFields; // Default export so CreateUser page can import and render these contact fields
+
+************* ./src/components/CreateUser/UserForm.tsx ************
+import React from 'react'; // React core: required for JSX and component typing
+import { Form, Row, Col } from 'antd'; // Ant Design form and grid primitives used to build the form layout
+import useCreateUser from '../../hooks/useCreateUser.tsx'; // Custom hook encapsulating form state, handlers and helpers
+import NameFields from './NameFields.tsx'; // Composite fields for first/last name
+import ContactFields from './ContactFields.tsx'; // Composite fields for email/phone
+import RoleDepartmentFields from './RoleDepartmentFields.tsx'; // Selects for role and department
+import DateStatusFields from './DateStatusFields.tsx'; // Date picker + status switch
+import AvatarField from './AvatarField.tsx'; // File upload field for profile picture
+import BioField from './BioField.tsx'; // Textarea for bio/description
+import FormActions from './FormActions.tsx'; // Action buttons (reset/submit)
+
+/**
+ * UserForm
+ * - Renders the CreateUser form by composing small field components.
+ * - Uses useCreateUser hook to obtain the AntD form instance and handlers.
+ */
+const UserForm: React.FC = () => {
+  const { form, onFinish, onFinishFailed, onReset } = useCreateUser();
+  // form: AntD Form instance used for controlling fields programmatically
+  // onFinish: submit handler called when validation passes
+  // onFinishFailed: handler called when validation fails
+  // onReset: handler to reset/clear form (passed to FormActions)
+
+  return (
+    <Form
+      form={form} // bind the AntD Form instance from the hook to this Form
+      layout="vertical" // vertical layout: labels above controls for readability
+      onFinish={onFinish} // handle successful form submission
+      onFinishFailed={onFinishFailed} // handle validation failures
+      initialValues={{ // initial default values for controlled fields
+        status: true, // default account status = active
+        role: 'viewer', // default role selection
+        department: 'general', // default department selection
+      }}
+    >
+      {/* Row provides responsive grid spacing for the grouped fields */}
+      <Row gutter={[16, 16]}>
+        {/* NameFields: first/last name inputs (each wrapped in Col for responsive sizing) */}
+        <NameFields />
+
+        {/* ContactFields: email and phone inputs with validation */}
+        <ContactFields />
+
+        {/* RoleDepartmentFields: role and department Select controls */}
+        <RoleDepartmentFields />
+
+        {/* DateStatusFields: join date DatePicker and account status Switch */}
+        <DateStatusFields />
+
+        {/* AvatarField: file upload control for profile picture; integrates with form via name="avatar" */}
+        <AvatarField />
+
+        {/* BioField: TextArea for optional user biography with character limit and counter */}
+        <BioField />
+      </Row>
+
+      {/* FormActions: renders Reset and Submit buttons; passes onReset handler for Reset */}
+      <FormActions onReset={onReset} />
+    </Form>
+  );
+};
+
+export default UserForm; // Default export so CreateUser page can import and render this form
+
+************* ./src/components/CreateUser/RoleDepartmentFields.tsx ************
+// Import React to enable JSX and define the component
+import React from 'react';
+// Import Ant Design Form, Select and Col for form controls and responsive layout
+import { Form, Select, Col } from 'antd';
+
+// Destructure Option from Select for concise usage below
+const { Option } = Select;
+
+// Define RoleDepartmentFields as a React functional component (no props)
+const RoleDepartmentFields: React.FC = () => {
+  // Return JSX: two responsive columns containing Select controls for role and department
+  return (
+    <>
+      {/* Left column: responsive sizing (full width xs, half width sm+) */}
+      <Col xs={24} sm={12}>
+        {/* Form.Item binds the Select to the parent AntD Form under the key "role" */}
+        <Form.Item
+          // Visible label displayed above the select control
+          label="Role"
+          // Field name used in form values and submission
+          name="role"
+          // Validation: require a selection and show a message if empty
+          rules={[{ required: true, message: 'Please select a role!' }]}
+        >
+          {/* Select: dropdown to choose a user role; placeholder guides the user */}
+          <Select placeholder="Select user role" size="large">
+            {/* Option entries: each Option has a value and visible label */}
+            <Option value="admin">Administrator</Option>
+            <Option value="editor">Editor</Option>
+            <Option value="viewer">Viewer</Option>
+            <Option value="manager">Manager</Option>
+          </Select>
+        </Form.Item>
+      </Col>
+
+      {/* Right column: responsive sizing (full width xs, half width sm+) */}
+      <Col xs={24} sm={12}>
+        {/* Form.Item binds the Select to the parent AntD Form under the key "department" */}
+        <Form.Item
+          // Visible label shown above the department select
+          label="Department"
+          // Field name used in form values and submission
+          name="department"
+          // Validation: require selection and show message if not chosen
+          rules={[{ required: true, message: 'Please select a department!' }]}
+        >
+          {/* Select: dropdown to choose department with a helpful placeholder */}
+          <Select placeholder="Select department" size="large">
+            {/* Option entries enumerate available departments with values and labels */}
+            <Option value="engineering">Engineering</Option>
+            <Option value="marketing">Marketing</Option>
+            <Option value="sales">Sales</Option>
+            <Option value="hr">Human Resources</Option>
+            <Option value="finance">Finance</Option>
+            <Option value="general">General</Option>
+          </Select>
+        </Form.Item>
+      </Col>
+    </>
+  );
+};
+
+// Default export so parent CreateUser form can import and render these fields
+export default RoleDepartmentFields;
+
+************* ./src/components/CreateUser/DateStatusFields.tsx ************
+import React from 'react'; // Import React to enable JSX and define functional components
+import { Form, DatePicker, Switch, Col } from 'antd'; // AntD primitives used: Form.Item, DatePicker, Switch, Col for layout
+
+const DateStatusFields: React.FC = () => { // Define component as a React Functional Component (no props expected)
+  return (
+    <> {/* Fragment groups the two Col elements without adding an extra DOM node */}
+      <Col xs={24} sm={12}> {/* Left column: full width on xs, half width on sm+ */}
+        <Form.Item
+          label="Join Date" /* Label shown above the date picker describing the field */
+          name="joinDate" /* Form field key used by the parent AntD Form (form values under 'joinDate') */
+          rules={[{ required: true, message: 'Please select join date!' }]} /* Validation: required with message */
+        >
+          <DatePicker 
+            style={{ width: '100%' }} /* Make the picker take full column width for consistent layout */
+            placeholder="Select join date" /* Placeholder instructing the user */
+            size="large" /* Larger control for better touch target */
+          />
+        </Form.Item>
+      </Col>
+
+      <Col xs={24} sm={12}> {/* Right column: full width on xs, half width on sm+ */}
+        <Form.Item
+          label="Account Status" /* Label above the switch to indicate its purpose */
+          name="status" /* Field key used in form values for the account status */
+          valuePropName="checked" /* Bind the Switch's checked prop to the form value */
+        >
+          <div style={{ paddingTop: 8 }}> {/* Small top padding to vertically align the switch with the label */}
+            <Switch 
+              checkedChildren="Active" /* Text shown inside switch when checked */
+              unCheckedChildren="Inactive" /* Text shown inside switch when unchecked */
+              size="default" /* Default size; change to "small" or "large" if desired */
+            />
+          </div>
+        </Form.Item>
+      </Col>
+    </>
+  );
+};
+
+export default DateStatusFields; // Default export so CreateUser page can import and render these fields
+
+************* ./src/components/CreateUser/AvatarField.tsx ************
+import React from 'react'; // Import React to enable JSX and component definitions
+import { Form, Upload, Button, Col } from 'antd'; // Ant Design components used in this field: Form.Item, Upload wrapper, Button, Col layout
+import { UploadOutlined } from '@ant-design/icons'; // Icon shown inside the upload button
+import useCreateUser from '../../hooks/useCreateUser.tsx'; // Custom hook providing form helpers and uploadProps for this form
+
+const AvatarField: React.FC = () => { // Define AvatarField as a functional component (no props)
+  const { uploadProps } = useCreateUser(); // Destructure uploadProps from the hook (controls beforeUpload, onChange, file list, etc.)
+
+  return (
+    <Col xs={24}> {/* Col: responsive grid column, full width on extra-small screens */}
+      <Form.Item
+        label="Profile Picture" /* Label displayed above the upload control */
+        name="avatar" /* Form field name used in form values */
+      >
+        <Upload {...uploadProps}> {/* Upload: AntD upload wrapper; spread uploadProps from hook to control behavior */}
+          <Button icon={<UploadOutlined />} size="large"> {/* Button triggers file selection when clicked */}
+            Click to Upload {/* Visible button text instructing the user */}
+          </Button>
+        </Upload>
+      </Form.Item>
+    </Col>
+  );
+};
+
+export default AvatarField; // Default export so CreateUser page can import and render this field
+
+************* ./src/components/CreateUser/BioField.tsx ************
+import React from 'react'; // Import React to enable JSX and define the component
+import { Col, Form, Input } from 'antd'; // Import Ant Design layout and form primitives used in this field
+
+const { TextArea } = Input; // Destructure TextArea from Input for concise usage below
+
+const BioField: React.FC = () => { // Define BioField as a React functional component (no props expected)
+  return (
+    <Col xs={24}> {/* Col: responsive grid column; xs=24 makes it full-width on extra-small screens */}
+      <Form.Item
+        label="Bio" /* Label shown above the field to describe its purpose */
+        name="bio" /* Field name used by the surrounding AntD Form for values and submission */
+        rules={[ /* Validation rules array applied by AntD Form */
+          { max: 500, message: 'Bio cannot exceed 500 characters!' }, /* Max length rule with user-facing message */
+        ]}
+      >
+        <TextArea 
+          rows={4} /* rows: visible height in lines for the textarea */
+          placeholder="Enter a brief bio (optional)" /* Placeholder guiding the user what to enter */
+          showCount /* showCount: display character counter to the user */
+          maxLength={500} /* maxLength: enforce client-side character limit in the UI */
+        />
+      </Form.Item>
+    </Col>
+  );
+};
+
+export default BioField; // Default export so CreateUser page can import and render this field
+
+************* ./src/components/Home/ActionButton.tsx ************
+import React from 'react'; // React core: enables JSX and defines functional components
+import { Button } from 'antd'; // Ant Design Button component used for the clickable action
+import { 
+  UserOutlined, // icon used for 'user' action
+  RightOutlined, // trailing icon used inside every action button
+  ArrowUpOutlined // icon used for 'arrowUp' action
+} from '@ant-design/icons'; // import icons from Ant Design's icon package
+
+// ActionButton props:
+// - type: AntD Button type (default || primary etc.)
+// - icon: string key selecting which icon to render inside the button
+// - text: visible label shown inside the button
+// - onClick: click handler invoked when the button is pressed
+const ActionButton: React.FC<any> = ({ 
+  type = 'default', // default to 'default' button styling when not provided
+  icon, // string key controlling which icon to render (e.g., 'user' | 'arrowUp')
+  text, // visible button label
+  onClick // click handler passed from parent
+}) => {
+  // getIcon: map the icon key to a JSX icon element
+  const getIcon = () => {
+    switch (icon) {
+      case 'user': // when icon prop === 'user'
+        return <UserOutlined />; // render the user icon
+      case 'arrowUp': // when icon prop === 'arrowUp'
+        return <ArrowUpOutlined />; // render the upward arrow icon
+      default: // fallback for unknown or undefined icon keys
+        return null; // no leading icon rendered
+    }
+  };
+
+  // Render the AntD Button:
+  // - type: passed through to control visual emphasis
+  // - icon: leading icon returned by getIcon()
+  // - onClick: callback fired when the user clicks the button
+  // - block: makes the button stretch to the container width (good for stacked actions)
+  // Inside the button we render:
+  // - text: the primary label
+  // - RightOutlined: trailing affordance indicating forward/action
+  return (
+    <Button 
+      type={type} 
+      icon={getIcon()} 
+      onClick={onClick}
+      block
+    >
+      {text} {/* visible label shown to the user */}
+      <RightOutlined /> {/* trailing chevron/icon indicating continuation */}
+    </Button>
+  );
+};
+
+export default ActionButton; // Default export so other modules can import and reuse this component
+
+************* ./src/components/Home/ProjectProgressCard.tsx ************
+import React from 'react'; // Import React to enable JSX and define the functional component
+import { Card, Progress } from 'antd'; // Import AntD Card and Progress (Progress imported here though individual items use ProgressItem)
+import ProgressItem from './ProgressItem.tsx'; // Import the small reusable ProgressItem component
+
+const ProjectProgressCard: React.FC = () => { // Define ProjectProgressCard as a React functional component
+  return (
+    <Card title="Project Progress" bordered={false}> {/* Card: container with title and no outer border */}
+      {/* Render a ProgressItem for the Website Redesign task (animated/active) */}
+      <ProgressItem 
+        title="Website Redesign" /* label shown for this progress entry */
+        percent={75} /* numeric completion percent passed to the item */
+        status="active" /* visual status (active shows animation) */
+      />
+      {/* Render a ProgressItem for the Mobile App task (default/normal status) */}
+      <ProgressItem 
+        title="Mobile App" /* label for mobile app progress */
+        percent={50} /* 50% complete */
+      />
+      {/* Render a ProgressItem for the API Development task (success state) */}
+      <ProgressItem 
+        title="API Development" /* label for API development progress */
+        percent={90} /* 90% complete */
+        status="success" /* success state indicates near-completion */
+      />
+    </Card>
+  );
+};
+
+export default ProjectProgressCard; // Default export so parent modules (e.g., DashboardContent) can import and render this card
+
+************* ./src/components/Home/StatsSection.tsx ************
+import React from 'react'; // React core: required for JSX and component definitions
+import { Row, Col } from 'antd'; // Ant Design grid primitives used to layout stat cards
+import StatCard from './StatCard.tsx'; // Reusable StatCard component that renders a single statistic
+
+// StatsSection: renders a responsive row of StatCard components from statsData prop
+const StatsSection: React.FC<any> = ({ statsData }) => {
+  return (
+    // Row: AntD grid row with horizontal & vertical gutter and bottom spacing
+    <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
+      {/* Map over statsData to render one StatCard per stat object */}
+      {statsData.map((stat, index) => (
+        // Col: responsive column sizing (xs: full, sm: half, lg: third)
+        <Col xs={24} sm={12} lg={8} key={index}>
+          {/* StatCard: receives a single stat object (title, value, etc.) */}
+          <StatCard stat={stat} />
+        </Col>
+      ))}
+    </Row>
+  );
+};
+
+export default StatsSection; // Default export so parent pages (Home/Dashboard) can import and render this section
+
+************* ./src/components/Home/WelcomeSection.tsx ************
+import React from 'react'; // Import React so JSX compiles and component can be defined
+import { Typography } from 'antd'; // Import Ant Design Typography primitives for semantic text
+
+const { Title, Paragraph } = Typography; // Destructure Title and Paragraph for concise JSX usage
+
+const WelcomeSection: React.FC = () => { // Define WelcomeSection as a React functional component (no props)
+  return (
+    <> {/* Fragment: groups Title + Paragraph without adding extra DOM node */}
+      <Title level={2}>Welcome to Dashboard</Title> {/* Title: H2-level semantic heading shown to users */}
+      <Paragraph>
+        {/* Paragraph: explanatory text providing context about the dashboard demo */}
+        This is a comprehensive demo of Ant Design layout components with React Router.
+        The layout includes a responsive sidebar, header with user menu, and footer.
+      </Paragraph>
+    </>
+  );
+};
+
+export default WelcomeSection; // Default export so parent pages (e.g., Home) can import and render this section
+
+************* ./src/components/Home/StatCard.tsx ************
+import React from 'react'; // React core: required for JSX and functional components
+import { Card, Statistic } from 'antd'; // Ant Design Card (container) and Statistic (metric display)
+
+/* StatCard
+   - Renders a single statistic inside an AntD Card.
+   - Props:
+     - stat: object containing { title, value, precision, valueStyle, prefix, suffix }
+*/
+const StatCard: React.FC<any> = ({ stat }) => { // stat prop carries all display options for the Statistic
+  return (
+    <Card> {/* Card: provides padding and visual separation for the statistic */}
+      <Statistic
+        title={stat.title} /* title: small label shown above the numeric value */
+        value={stat.value} /* value: main numeric/text value displayed prominently */
+        precision={stat.precision} /* precision: number of decimal places to show (optional) */
+        valueStyle={stat.valueStyle} /* valueStyle: inline styles applied to the value (color/weight) */
+        prefix={stat.prefix} /* prefix: optional leading JSX (e.g., icon) rendered before the value */
+        suffix={stat.suffix} /* suffix: optional trailing text (e.g., '%', currency) rendered after value */
+      />
+    </Card>
+  );
+};
+
+export default StatCard; // Default export so parent components can import and render this StatCard
+
+************* ./src/components/Home/DashboardContent.tsx ************
+import React from 'react'; // Import React to enable JSX and component typing
+import { Row, Col } from 'antd'; // Ant Design grid primitives used to layout the dashboard columns
+import ProjectProgressCard from './ProjectProgressCard.tsx'; // Left column card showing project progress bars
+import QuickActionsCard from './QuickActionsCard.tsx'; // Right column card containing quick action buttons
+
+// DashboardContent props:
+// - navigate: function passed from parent to perform navigation actions (e.g., react-router navigate)
+const DashboardContent: React.FC<any> = ({ navigate }) => { // Functional component receiving navigate prop
+  return (
+    // Row: AntD grid row with horizontal and vertical spacing (gutter)
+    <Row gutter={[16, 16]}>
+      {/* Left Column: on xs screens full width, on large screens half width */}
+      <Col xs={24} lg={12}>
+        {/* ProjectProgressCard: renders multiple Progress bars describing project statuses */}
+        <ProjectProgressCard />
+      </Col>
+
+      {/* Right Column: on xs screens full width, on large screens half width */}
+      <Col xs={24} lg={12}>
+        {/* QuickActionsCard: renders action buttons; pass navigate so buttons can change routes */}
+        <QuickActionsCard navigate={navigate} />
+      </Col>
+    </Row>
+  );
+};
+
+export default DashboardContent; // Default export so the parent Home page can import and render this content
+
+************* ./src/components/Home/QuickActionsCard.tsx ************
+import React from 'react'; // React core: enables JSX and component definitions
+import { Card, Space } from 'antd'; // Ant Design Card for container, Space for vertical spacing/layout
+import ActionButton from './ActionButton.tsx'; // Reusable action button component used for each quick action
+
+
+const QuickActionsCard: React.FC<any> = ({ navigate }) => { // Component receives `navigate` to perform route changes
+  return (
+    <Card title="Quick Actions" bordered={false}> {/* Card: titled container; bordered={false} for flat style */}
+      <Space direction="vertical" style={{ width: '100%' }}> {/* Space: stack buttons vertically and stretch to full width */}
+        <ActionButton 
+          type="primary" /* type: AntD button type - primary to emphasize the main action */
+          icon="user" /* icon: key passed to ActionButton to render leading icon */
+          text="Create New User" /* text: visible label inside the button */
+          onClick={() => navigate('/create-user')} /* onClick: navigates to the create-user route when clicked */
+        />
+        <ActionButton 
+          icon="user" /* secondary action uses default button style with same leading icon */
+          text="View All Users" /* label for viewing the users list */
+          onClick={() => navigate('/users')} /* navigates to the users listing route */
+        />
+        <ActionButton 
+          icon="arrowUp" /* icon key for an upward/learn-more affordance */
+          text="Learn More About This App" /* label that invites the user to read about the app */
+          onClick={() => navigate('/about')} /* navigates to the about page */
+        />
+      </Space>
+    </Card>
+  );
+};
+
+export default QuickActionsCard; // Default export so parent pages (Dashboard/Home) can import and render this card
+
+************* ./src/components/Home/ProgressItem.tsx ************
+import React from 'react'; // React core: required for JSX and component typing
+import { Progress } from 'antd'; // Ant Design Progress component used to render progress bars
+
+// ProgressItem props:
+// - title: string label shown to the left of the percent
+// - percent: number 0-100 indicating completion
+// - status: optional AntD Progress status ('normal' | 'active' | 'success' | 'exception')
+const ProgressItem: React.FC<any> = ({ 
+  title, // title text displayed above the progress bar area
+  percent, // numeric percent value displayed and passed to Progress
+  status = 'normal' // default progress status when not provided
+}) => {
+  // Return a small block that shows a label, percent text, and a Progress bar
+  return (
+    <div style={{ marginBottom: 16 }}> {/* container with bottom spacing to separate items */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+        <span>{title}</span> {/* left: human-readable title of the progress item */}
+        <span>{percent}%</span> {/* right: textual percent indicator for quick reading */}
+      </div>
+      <Progress percent={percent} status={status} /> {/* AntD Progress visual bar with given percent and status */}
+    </div>
+  );
+};
+
+export default ProgressItem; // Default export so parent components (e.g., ProjectProgressCard) can import and render this item
+
+************* ./src/components/About/TechnologiesCard.tsx ************
+import React from 'react'; // Import React to enable JSX and React types (required by some toolchains)
+import { Card, Tag, Typography } from 'antd'; // Ant Design UI primitives: Card container, Tag badges, Typography text
+import useAbout from '../../hooks/useAbout.tsx'; // Custom hook providing about-page data (technologies array)
+
+const { Paragraph } = Typography; // Destructure Paragraph from Typography for concise usage
+
+const TechnologiesCard: React.FC = () => { // Define component as React Functional Component with no props
+  const { technologies } = useAbout(); // Call hook to retrieve technologies array used to render Tag list
+
+  return (
+    <Card title="Technologies Used"> {/* Card: visual container with a title */}
+      <div style={{ marginBottom: 16 }}> {/* Wrapper div: spacing below the tag list */}
+        {technologies.map((tech, index) => ( /* Map over technologies -> render a Tag per tech */
+          <Tag 
+            key={index} /* Key: using index for stable demo arrays; prefer stable id for dynamic data */
+            color={tech.color} /* Tag color derived from tech metadata (string or preset) */
+            style={{ marginBottom: 8 }} /* Small bottom margin so tags wrap with spacing */
+          >
+            {tech.name} {/* Render technology name inside the Tag */}
+          </Tag>
+        ))}
+      </div>
+
+      <Paragraph>
+        {/* Paragraph: explanatory text about why these technologies were chosen */}
+        This project leverages modern web technologies to create a robust and scalable
+        application architecture. Each technology is carefully chosen to provide the
+        best developer experience and user interface.
+      </Paragraph>
+    </Card>
+  );
+};
+
+export default TechnologiesCard; // Default export so About page can import and render this card
+
+************* ./src/components/About/TimelineCard.tsx ************
+import React from 'react'; // import React to enable JSX and component definitions
+import { Card, Timeline } from 'antd'; // import AntD Card and Timeline UI components
+import useAbout from '../../hooks/useAbout.tsx'; // import custom hook that provides about-page data (timeLine array)
+
+/* TimelineCard component:
+   - renders a Card containing an Ant Design Timeline
+   - uses timeLine data returned by useAbout hook
+*/
+const TimelineCard: React.FC = () => { // define functional component (no props)
+  const { timeLine } = useAbout(); // call hook and extract timeLine array used by Timeline
+
+  return (
+    <Card title="Development Timeline"> {/* Card wrapper with title shown in header */}
+      {/* Timeline component: receives `items` prop (array of milestone descriptors) */}
+      <Timeline
+        items={timeLine} /* pass timeline items directly so AntD renders dots, colors, and content */
+      />
+    </Card>
+  ); // end JSX return
+}; // end component
+
+export default TimelineCard; // default export so About page can import and render this card
+
+************* ./src/components/About/AboutHeader.tsx ************
+import React from 'react'; // Import React to enable JSX and React types (required by some toolchains)
+import { Typography } from 'antd'; // Import Ant Design Typography primitives for semantic text components
+
+const { Title, Paragraph } = Typography; // Destructure Title and Paragraph for concise JSX usage
+
+const AboutHeader: React.FC = () => { // Define AboutHeader as a React functional component (no props)
+  return (
+    <> {/* Fragment: groups multiple children without adding an extra DOM node */}
+      <Title level={2}>About This Application</Title> {/* H2: primary page heading describing the page */}
+      <Paragraph>
+        This application demonstrates a comprehensive layout structure using Ant Design components
+        with React Router for navigation. It showcases best practices for building scalable and
+        maintainable React applications.
+      </Paragraph> {/* Paragraph: explanatory text summarizing app purpose and architecture */}
+    </>
+  );
+};
+
+export default AboutHeader; // Default export so other modules (About page) can import and render this header
+
+************* ./src/components/About/FeaturesSection.tsx ************
+import React from 'react'; // Import React to enable JSX and React types (required by some toolchains)
+import { Typography, Row, Col, Card } from 'antd'; // Import Ant Design primitives used in this component
+import useAbout from '../../hooks/useAbout.tsx';
+
+const { Title } = Typography; // Destructure Title for concise usage in JSX
+
+const FeaturesSection: React.FC = () => { // Define FeaturesSection as a React Functional Component (no props expected)
+  const { features } = useAbout(); // Call useAbout hook and destructure features array used for rendering cards
+
+  return (
+    <> {/* Fragment groups multiple children without adding an extra DOM node */}
+      <Title level={3}>Key Features</Title> {/* H3 heading for the features section */}
+
+      <Row gutter={[16, 16]} style={{ marginBottom: 32 }}>
+        {/* Row: AntD grid row with horizontal and vertical gutter spacing and bottom margin */}
+        {features.map((feature, index) => (
+          /* Map over features array to render one Col/Card per feature.
+             index used as key here for static demo data; prefer stable ids for dynamic lists. */
+          <Col xs={24} sm={12} lg={6} key={index}>
+            {/* Col: responsive column sizes
+                - xs=24: full width on extra-small screens
+                - sm=12: half width on small screens
+                - lg=6: quarter width on large screens */}
+            <Card hoverable style={{ height: '100%' }}>
+              {/* Card: hoverable to indicate interactivity; height 100% to equalize row card heights */}
+              <div style={{ textAlign: 'center', marginBottom: 16 }}>
+                {feature.icon} {/* Render the feature's icon JSX, centered above title/description */}
+              </div>
+
+              <Card.Meta
+                title={feature.title} // Feature title displayed prominently
+                description={feature.description} // Short description explaining the feature
+              />
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </>
+  );
+};
+
+export default FeaturesSection; // Default export so the About page can import and render this section
+
+************* ./src/components/About/TechAndTimelineSection.tsx ************
+import React from 'react'; // React core to allow JSX and component definitions
+import { Row, Col, Card, Tag, Typography } from 'antd'; // Ant Design layout / display primitives used across child components
+import TechnologiesCard from './TechnologiesCard.tsx'; // Child component that renders the "Technologies Used" card
+import TimelineCard from './TimelineCard.tsx'; // Child component that renders the "Development Timeline" card
+
+const TechAndTimelineSection: React.FC = () => { // Functional component: groups technologies + timeline into a responsive two-column row
+  return (
+    <Row gutter={[24, 24]}> {/* Row: responsive grid row with horizontal and vertical spacing (gutter) */}
+      <Col xs={24} lg={12}> {/* Left column: full width on xs, half width on large screens */}
+        <TechnologiesCard /> {/* Child: renders technology tags and explanatory text inside an AntD Card */}
+      </Col>
+
+      <Col xs={24} lg={12}> {/* Right column: full width on xs, half width on large screens */}
+        <TimelineCard /> {/* Child: renders project / development timeline using AntD Timeline inside a Card */}
+      </Col>
+    </Row>
+  );
+};
+
+export default TechAndTimelineSection; // Default export so About page can import and render this composed section
+
+************* ./src/components/About/ArchitectureSection.tsx ************
+import React from 'react'; // Import React to enable JSX and React types (required by some toolchains)
+import { Card, Typography } from 'antd'; // Import Ant Design Card and Typography UI primitives used in this component
+
+const { Title, Paragraph, Text } = Typography; // Destructure Title, Paragraph, Text for concise JSX usage
+
+const ArchitectureSection: React.FC = () => { // Define ArchitectureSection as a React Functional Component (no props expected)
+  return (
+    <Card> {/* Card: visual container with padding and border for the architecture overview */}
+      <Title level={4}>Architecture Overview</Title> {/* Title: H4 semantic heading for the section */}
+      <Paragraph>
+        The application follows a modular architecture pattern with clear separation of concerns:
+      </Paragraph> {/* Paragraph: short explanatory lead-in to the list below */}
+      <ul>
+        <li>
+          <Text strong>Layout Component:</Text> {/* Text strong: highlights the term "Layout Component" */}
+          {' '}Provides the main application shell with navigation{/* plain text: explains purpose of layout component */}
+        </li>
+        <li>
+          <Text strong>Page Components:</Text>{' '} {/* highlights "Page Components" */}
+          Individual pages with specific functionality{/* explains role of page components */}
+        </li>
+        <li>
+          <Text strong>Routing:</Text>{' '} {/* highlights "Routing" */}
+          React Router v6 with nested routes and outlet pattern{/* describes routing approach used */}
+        </li>
+        <li>
+          <Text strong>Responsive Design:</Text>{' '} {/* highlights "Responsive Design" */}
+          Mobile-first approach with breakpoint-based layouts{/* explains responsiveness strategy */}
+        </li>
+        <li>
+          <Text strong>Component Library:</Text>{' '} {/* highlights "Component Library" */}
+          Consistent UI using Ant Design components{/* explains UI consistency source */}
+        </li>
+      </ul>
+    </Card>
+  );
+};
+
+export default ArchitectureSection; // Default export so other modules (About page) can import and render this section
+
+************* ./src/components/Layout/FooterBar.tsx ************
+import React from 'react'; // Import React to enable JSX and define the component
+import { Layout } from 'antd'; // Import Ant Design Layout to access Footer subcomponent
+
+const { Footer } = Layout; // Destructure Footer from Layout for concise usage below
+
+const FooterBar: React.FC = () => { // Define FooterBar as a React functional component (no props)
+  return (
+    <Footer
+      style={{
+        textAlign: 'center', // Center the footer content horizontally
+        background: '#f5f5f5', // Light gray background to separate footer from main content
+        borderTop: '1px solid #e8e8e8', // Subtle top border to create a visual divider
+      }}
+    >
+      {/* Visible footer text displayed to all users */}
+      Ant Design Layout Demo ©2025 Created with ❤️
+    </Footer>
+  );
+};
+
+export default FooterBar; // Default export so layout components/pages can import and render this footer
+
+
+************* ./src/components/Layout/Sidebar.tsx ************
+import React from 'react'; // Import React to enable JSX and component definitions
+import { Layout, Menu, Typography } from 'antd'; // Import AntD layout, menu and typography primitives
+import {
+  HomeOutlined, // Icon for Home menu item
+  UserOutlined, // Icon for Users menu item
+  InfoCircleOutlined, // Icon for About menu item
+  PlusOutlined, // Icon for Create User menu item
+} from '@ant-design/icons'; // Ant Design icon set
+import { Location, NavigateFunction } from 'react-router-dom'; // Types for routing props (if used)
+
+const { Sider } = Layout; // Destructure Sider from Layout for concise usage
+const { Title } = Typography; // Destructure Title for concise usage in the brand area
+
+const Sidebar: React.FC<any> = ({ // Sidebar component accepts layout/navigation props
+  collapsed, // boolean: whether sider is collapsed
+  setCollapsed, // function: setter to toggle collapsed state
+  navigate, // function: navigate to routes (usually from react-router)
+  location, // location object: current route path used to mark selected menu item
+}) => {
+  const menuItems = [ // Define menu entries displayed in the sidebar
+    { key: '/', icon: <HomeOutlined />, label: 'Home' }, // Home route
+    { key: '/about', icon: <InfoCircleOutlined />, label: 'About' }, // About page route
+    { key: '/users', icon: <UserOutlined />, label: 'Users' }, // Users list route
+    { key: '/create-user', icon: <PlusOutlined />, label: 'Create User' }, // Create user route
+  ];
+
+  return (
+    <Sider
+      trigger={null} // Hide the default trigger, using custom toggle elsewhere
+      collapsible // Make the sider collapsible
+      collapsed={collapsed} // Controlled collapsed state provided via prop
+      breakpoint="md" // Collapse automatically at the 'md' breakpoint
+      onBreakpoint={(broken) => setCollapsed(broken)} // Update collapsed state when breakpoint changes
+      style={{
+        overflow: 'auto', // Allow scrolling if menu content exceeds viewport height
+        height: '100vh', // Full viewport height so the sider fills the left side
+        position: 'fixed', // Fix position so the sider stays when content scrolls
+        left: 0, // Anchor to the left
+        top: 0, // Anchor to the top
+        bottom: 0, // Anchor to the bottom
+        zIndex: 1000, // Keep sider above other content layers
+      }}
+    >
+      <div
+        style={{
+          height: 32, // small brand bar height
+          margin: 16, // spacing around the brand area
+          background: 'rgba(255, 255, 255, 0.2)', // translucent background for brand area
+          borderRadius: 6, // rounded corners for the brand container
+          display: 'flex', // flex to center content
+          alignItems: 'center', // vertically center brand content
+          justifyContent: 'center', // horizontally center brand content
+        }}
+      >
+        {!collapsed && ( // Only show full title when sider is expanded
+          <Title level={4} style={{ color: 'white', margin: 0 }}>
+            AntD Application {/* Brand/title displayed in the sider when expanded */}
+          </Title>
+        )}
+      </div>
+
+      <Menu
+        theme="dark" // Dark theme to match typical sidebar styling
+        mode="inline" // Inline mode for vertical menu layout
+        selectedKeys={[location.pathname]} // Highlight the menu item matching current path
+        items={menuItems} // Menu entries defined above
+        onClick={({ key }) => navigate(key)} // Navigate to the selected route when menu item clicked
+      />
+    </Sider>
+  );
+};
+
+export default Sidebar; // Default export so layout can import and render this sidebar component
+
+
+************* ./src/components/Layout/HeaderBar.tsx ************
+import React from 'react'; // Import React for JSX and component creation
+import { Layout, Button, Typography, Space, Dropdown, Avatar } from 'antd'; // AntD primitives used in header
+import {
+  MenuFoldOutlined, // Icon when menu is folded
+  MenuUnfoldOutlined, // Icon when menu is unfolded
+  UserOutlined, // Icon used for user/avatar
+  SettingOutlined, // Icon for settings menu item
+  LogoutOutlined, // Icon for logout menu item
+} from '@ant-design/icons'; // Import icons from Ant Design
+
+const { Header } = Layout; // Destructure Header from Layout for concise usage
+const { Title } = Typography; // Destructure Title from Typography for concise usage
+
+const HeaderBar: React.FC<any> = ({ collapsed, setCollapsed }) => { // HeaderBar receives collapsed state and setter
+  const userMenuItems = [ // Define items for the user dropdown menu
+    { key: 'profile', icon: <UserOutlined />, label: 'Profile' }, // Profile menu entry
+    { key: 'settings', icon: <SettingOutlined />, label: 'Settings' }, // Settings entry
+    { type: 'divider' as const }, // Visual divider between groups
+    { key: 'logout', icon: <LogoutOutlined />, label: 'Logout', danger: true }, // Logout entry (danger)
+  ];
+
+  const handleUserMenuClick = ({ key }: { key: string }) => { // Handle clicks on user menu items
+    if (key === 'logout') console.log('Logging out...'); // Placeholder: perform logout
+    else console.log(`Clicked: ${key}`); // Placeholder: handle other menu actions
+  };
+
+  return (
+    <Header
+      style={{
+        padding: '0 16px', // Horizontal padding inside header
+        background: '#fff', // White background for header
+        display: 'flex', // Use flexbox for layout
+        alignItems: 'center', // Vertically center items
+        justifyContent: 'space-between', // Space between left and right groups
+        borderBottom: '1px solid #f0f0f0', // Subtle bottom border for separation
+      }}
+    >
+      <Space> {/* Left group: menu toggle + title */}
+        <Button
+          type="text" // Text-style button (no background)
+          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />} // Toggle icon based on collapsed state
+          onClick={() => setCollapsed(!collapsed)} // Toggle collapsed state when clicked
+          style={{ fontSize: '16px', width: 64, height: 64 }} // Fixed sizing for consistent touch target
+        />
+        <Title level={4} style={{ margin: 0 }}> {/* App title with zero margin to align with button */}
+          Dashboard {/* Visible title text */}
+        </Title>
+      </Space>
+
+      <Dropdown
+        menu={{ items: userMenuItems, onClick: handleUserMenuClick }} // Attach menu items and click handler
+        placement="bottomRight" // Dropdown appears anchored to bottom-right of trigger
+      >
+        <Space style={{ cursor: 'pointer' }}> {/* Clickable area showing avatar and username */}
+          <Avatar icon={<UserOutlined />} /> {/* Avatar: shows user icon or image */}
+          <span>John Doe</span> {/* Static username placeholder; replace with dynamic user data */}
+        </Space>
+      </Dropdown>
+    </Header>
+  );
+};
+
+export default HeaderBar; // Default export so layout can import and use this header component
+
+
+************* ./src/App.css ************
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+************* ./src/App.tsx ************
+// Import React Query provider and client to enable server state caching and requests
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+// Import React Router components for client-side routing
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Import Ant Design ConfigProvider to supply theme tokens app-wide
+import { ConfigProvider } from 'antd';
+// Import the app layout and page components used by the router
+import AppLayout from "./pages/AppLayout.tsx";
+import Home from "./pages/Home.tsx";
+import About from "./pages/About.tsx";
+import Users from "./pages/Users.tsx";
+import CreateUser from "./pages/CreateUser.tsx";
+import NotFound from "./pages/NotFound.tsx";
+
+// Create a React Query client instance used by QueryClientProvider
+const queryClient = new QueryClient();
+
+// App: root component that wires providers and the router
+const App = () => (
+  // Provide React Query client to the app so hooks like useQuery can function
+  <QueryClientProvider client={queryClient}>
+    {/* ConfigProvider: central place to define AntD theme tokens */}
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#1890ff', // primary brand color used by AntD components
+          borderRadius: 6, // default border radius applied across components
+        },
+      }}
+    >
+      {/* BrowserRouter: enable HTML5 history based routing */}
+      <BrowserRouter>
+        {/* Routes: declare route hierarchy for the application */}
+        <Routes>
+          {/* Root route renders AppLayout which contains shared layout (sidebar/header/footer) */}
+          <Route path="/" element={<AppLayout />}>
+            {/* index route: renders Home at the root path "/" */}
+            <Route index element={<Home />} />
+            {/* Nested routes inside AppLayout for different pages */}
+            <Route path="about" element={<About />} /> {/* /about */}
+            <Route path="users" element={<Users />} /> {/* /users */}
+            <Route path="create-user" element={<CreateUser />} /> {/* /create-user */}
+          </Route>
+
+          {/* Fallback route: render NotFound for any unmatched path ("404") */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </ConfigProvider>
+  </QueryClientProvider>
+);
+
+// Default export so the app entry can render this root component
+export default App;
+
+
+************* ./src/hooks/useAbout.tsx ************
+import { 
+  GithubOutlined, // Icon used to represent Ant Design / repo-related feature
+  CodeOutlined, // Icon representing code / development
+  LayoutOutlined, // Icon representing layout / structural feature
+  MobileOutlined, // Icon representing mobile/responsive capability
+  CheckCircleOutlined, // Icon indicating completed milestone
+  SyncOutlined, // Icon indicating in-progress / syncing milestone
+  ClockCircleOutlined // Icon indicating scheduled / future milestone
+} from '@ant-design/icons'; // Import all required icons from Ant Design's icon package
+
+import { Typography } from 'antd'; // Import Typography to render inline Text elements
+const { Text } = Typography; // Destructure Text for concise usage when building timeline children
+
+// Custom hook that returns static data used by the About page (features, technologies, timeline)
+export default function useAbout() {
+  // features: array of feature descriptors used to render feature cards on About page
+  const features = [
+    {
+      title: 'Responsive Layout', // Feature title
+      description: 'Mobile-first design that adapts to all screen sizes', // Short description
+      icon: <MobileOutlined style={{ fontSize: 24, color: '#1890ff' }} />, // Icon JSX with inline styling
+    },
+    {
+      title: 'Component Structure', // Feature title
+      description: 'Modular and reusable component architecture', // Short description
+      icon: <LayoutOutlined style={{ fontSize: 24, color: '#52c41a' }} />, // Icon JSX with inline styling
+    },
+    {
+      title: 'Modern React', // Feature title
+      description: 'Built with React 18, TypeScript, and functional components', // Short description
+      icon: <CodeOutlined style={{ fontSize: 24, color: '#722ed1' }} />, // Icon JSX with inline styling
+    },
+    {
+      title: 'Ant Design', // Feature title
+      description: 'Enterprise-class UI design language and components', // Short description
+      icon: <GithubOutlined style={{ fontSize: 24, color: '#fa541c' }} />, // Icon JSX with inline styling
+    },
+  ];
+
+  // technologies: array of simple objects used to render Tag badges for tech stack
+  const technologies = [
+    { name: 'React 18', color: 'blue' }, // React entry with Tag color hint
+    { name: 'TypeScript', color: 'purple' }, // TypeScript entry with Tag color hint
+    { name: 'Ant Design', color: 'cyan' }, // Ant Design entry
+    { name: 'React Router v6', color: 'green' }, // Router entry
+    { name: 'Responsive Design', color: 'orange' }, // Responsiveness entry
+    { name: 'Modern CSS', color: 'red' }, // CSS tooling entry
+  ];
+
+  // timeLine: array of AntD Timeline item descriptors used by TimelineCard component
+  const timeLine = [
+    {
+      color: 'green', // color of the timeline dot
+      dot: <CheckCircleOutlined />, // custom dot icon JSX indicating completion
+      children: ( // children JSX displayed beside the dot
+        <div>
+          <Text strong>Project Setup</Text> {/* Strong text for milestone title */}
+          <br />
+          <Text type="secondary">Initialize React app with TypeScript</Text> {/* Secondary description text */}
+        </div>
+      ),
+    },
+    {
+      color: 'green', // completed milestone color
+      dot: <CheckCircleOutlined />, // completed dot icon
+      children: (
+        <div>
+          <Text strong>Layout Structure</Text> {/* Milestone title */}
+          <br />
+          <Text type="secondary">Implement responsive layout with Ant Design</Text> {/* Milestone description */}
+        </div>
+      ),
+    },
+    {
+      color: 'blue', // in-progress milestone color
+      dot: <SyncOutlined spin />, // spinning sync icon to signal active work
+      children: (
+        <div>
+          <Text strong>Component Development</Text> {/* Milestone title */}
+          <br />
+          <Text type="secondary">Building reusable components</Text> {/* Milestone description */}
+        </div>
+      ),
+    },
+    {
+      color: 'gray', // future/scheduled milestone color
+      dot: <ClockCircleOutlined />, // clock icon for upcoming work
+      children: (
+        <div>
+          <Text strong>Testing & Optimization</Text> {/* Milestone title */}
+          <br />
+          <Text type="secondary">Performance optimization and testing</Text> {/* Milestone description */}
+        </div>
+      ),
+    },
+  ];
+
+  // Return the prepared data for consumption by About page components
+  return { features, timeLine, technologies };
+}
+
+
+************* ./src/hooks/useCreateUser.tsx ************
+import { Form, UploadProps, message } from "antd"; // AntD Form utilities, Upload props typing, and message for notifications
+import { useNavigate } from "react-router-dom"; // Hook to programmatically navigate after successful form submit
+
+// Custom hook that encapsulates CreateUser form instance, upload configuration and handlers
+export default function useCreateUser() {
+  const navigate = useNavigate(); // Get navigate function to change routes programmatically
+  const [form] = Form.useForm<any>(); // Create an AntD Form instance for controlled form operations
+
+  // uploadProps: configuration passed into AntD <Upload /> to control behavior and validation
+  const uploadProps: UploadProps = {
+    name: 'avatar', // field name sent with upload requests (if used)
+    listType: 'picture', // show thumbnails for selected files
+    maxCount: 1, // allow only a single file selection
+    beforeUpload: (file) => { // validation executed before upload attempt
+      const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'; // allow JPEG/PNG only
+      if (!isJpgOrPng) {
+        message.error('You can only upload JPG/PNG file!'); // notify user if wrong file type
+      }
+      const isLt2M = file.size / 1024 / 1024 < 2; // size check: less than 2MB
+      if (!isLt2M) {
+        message.error('Image must smaller than 2MB!'); // notify user if file too large
+      }
+      return false; // return false to prevent automatic upload (we handle file client-side)
+    },
+    onChange: (info) => { // called when file list changes (select/remove)
+      console.log('Upload info:', info); // log for debugging; replace with state handling if needed
+    },
+  };
+
+  // onFinish: handler invoked when form validation passes and user submits
+  const onFinish = (values: any) => {
+    console.log('Form values:', values); // debug print of collected form values
+    message.success('User created successfully!'); // show success notification to the user
+
+    // Simulate API call delay then navigate to the users list
+    setTimeout(() => {
+      navigate('/users'); // navigate to users page after creation
+    }, 1000);
+  };
+
+  // onFinishFailed: handler when form validation fails on submit
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo); // log validation errors for debugging
+    message.error('Please check the form for errors'); // show user-facing error notification
+  };
+
+  // onReset: reset form fields to initial state and notify the user
+  const onReset = () => {
+    form.resetFields(); // reset all fields in the AntD form instance
+    message.info('Form has been reset'); // informational message to user
+  };
+
+  // Return the hook API used by CreateUser form component
+  return {
+    navigate, // expose navigate in case callers need it
+    form, // AntD form instance bound to the form
+    uploadProps, // upload configuration for avatar field
+    onFinish, // submit success handler
+    onFinishFailed, // submit failure handler
+    onReset // form reset handler
+  }
+}
+
+
+************* ./src/hooks/useHome.tsx ************
+import React from 'react' // Import React to enable JSX usage (not strictly required for hooks but kept for consistency)
+// Import icons used in dashboard stats for visual affordances (prefixes)
+import { 
+  ArrowUpOutlined, 
+  ArrowDownOutlined, 
+  UserOutlined,
+  ShoppingCartOutlined,
+  DollarCircleOutlined
+} from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom'; // Hook to programmatically navigate between routes
+
+// Custom hook providing home/dashboard helpers and data (navigate + statsData)
+export default function useHome() {
+  const navigate = useNavigate(); // Obtain navigate function to change routes from within handlers
+
+  // statsData: array of metric descriptors used by the StatsSection / StatCard components
+  const statsData = [
+    {
+      title: 'Active Users', // metric title shown above the value
+      value: 1128, // numeric metric value
+      precision: 0, // number of decimals to display for the value
+      valueStyle: { color: '#3f8600' }, // inline style applied to the value (green color)
+      prefix: <ArrowUpOutlined />, // leading icon indicating trend (up)
+      suffix: '%', // suffix appended to the value for contextual units
+      icon: <UserOutlined />, // optional icon representing the metric domain
+    },
+    {
+      title: 'Sales', // title for sales metric
+      value: 93, // numeric value for sales metric
+      precision: 2, // two decimals for finer detail
+      valueStyle: { color: '#cf1322' }, // value styled red to indicate negative trend
+      prefix: <ArrowDownOutlined />, // leading icon indicating trend (down)
+      suffix: '%', // percent unit
+      icon: <ShoppingCartOutlined />, // icon representing commerce/sales
+    },
+    {
+      title: 'Revenue', // revenue metric title
+      value: 58730, // revenue numeric value
+      precision: 0, // integer display
+      prefix: '$', // prefix currency symbol
+      icon: <DollarCircleOutlined />, // icon representing money/currency
+    },
+  ];
+
+  // Return the navigation function and the prepared stats data for consumption by Home components
+  return { navigate, statsData };
+}
+
+
+************* ./src/hooks/mockUsers.tsx ************
+export const mockUsers: any[] = [
+  {
+    id: '1',
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    phone: '+1 (555) 123-4567',
+    role: 'Admin',
+    status: 'active',
+    joinDate: '2024-01-15',
+  },
+  {
+    id: '2',
+    name: 'Jane Smith',
+    email: 'jane.smith@example.com',
+    phone: '+1 (555) 234-5678',
+    role: 'Editor',
+    status: 'active',
+    joinDate: '2024-02-20',
+  },
+  {
+    id: '3',
+    name: 'Bob Johnson',
+    email: 'bob.johnson@example.com',
+    phone: '+1 (555) 345-6789',
+    role: 'Viewer',
+    status: 'inactive',
+    joinDate: '2024-03-10',
+  },
+  {
+    id: '4',
+    name: 'Alice Brown',
+    email: 'alice.brown@example.com',
+    phone: '+1 (555) 456-7890',
+    role: 'Editor',
+    status: 'active',
+    joinDate: '2024-03-25',
+  },
+  {
+    id: '5',
+    name: 'Charlie Wilson',
+    email: 'charlie.wilson@example.com',
+    phone: '+1 (555) 567-8901',
+    role: 'Viewer',
+    status: 'active',
+    joinDate: '2024-04-05',
+  },
+];
+
+************* ./src/hooks/actionItems.tsx ************
+// Import icons used for menu item visual affordances
+import { UserOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
+
+// Import MenuProps type from antd to type the returned items array
+import type { MenuProps } from 'antd';
+
+/**
+ * getActionItems
+ * - Returns an array of MenuProps['items'] suitable for antd Menu/Dropdown.
+ * - Each item is wired to call the corresponding handler with record.id when selected.
+ *
+ * Parameters:
+ * - record: the table row object (expected to contain an `id` property)
+ * - handleView: callback invoked to view details for the given user id
+ * - handleEdit: callback invoked to start editing the given user id
+ * - handleDelete: callback invoked to delete the given user id
+ */
+export const getActionItems = (
+  record: any, // table row data (used to extract the id)
+  handleView: (userId: string) => void, // view handler receives user id
+  handleEdit: (userId: string) => void, // edit handler receives user id
+  handleDelete: (userId: string) => void // delete handler receives user id
+): MenuProps['items'] => [
+  {
+    key: 'view', // unique key for the menu item
+    label: 'View Details', // visible label shown in the menu
+    icon: <UserOutlined />, // leading icon for visual affordance
+    onClick: () => handleView(record.id), // call view handler with the row id when clicked
+  },
+  {
+    key: 'edit', // unique key for edit action
+    label: 'Edit User', // visible label for edit
+    icon: <EditOutlined />, // edit icon
+    onClick: () => handleEdit(record.id), // call edit handler with the row id when clicked
+  },
+  {
+    type: 'divider', // menu divider to separate destructive action visually
+  },
+  {
+    key: 'delete', // unique key for delete action
+    label: 'Delete User', // visible label for delete
+    icon: <DeleteOutlined />, // delete/trash icon
+    danger: true, // mark this menu item as dangerous (red style) in antd
+    onClick: () => handleDelete(record.id), // call delete handler with the row id when clicked
+  },
+];
+
+************* ./src/hooks/useUsers.tsx ************
+// Import React hooks and router utilities used in this custom hook
+import { useState } from 'react'; // useState: local state for search text
+import { useNavigate } from 'react-router-dom'; // useNavigate: programmatic navigation helper
+
+// Import mock data and helper builders used to power the users table
+import { mockUsers } from './mockUsers.tsx'; // mockUsers: static dataset used for demo/listing
+import { getActionItems } from './actionItems.tsx'; // getActionItems: builds menu items for row actions
+import { columns } from './tableColumns.tsx'; // columns: factory that returns table column definitions
+
+// Default export: custom hook that encapsulates users list state, filters and handlers
+export default function useUsers() {
+  const navigate = useNavigate(); // navigate: function to change routes from handlers if needed
+  const [searchText, setSearchText] = useState(''); // searchText: controlled input state for filtering
+
+  // filteredUsers: derive a filtered list from mockUsers using the current searchText
+  // matches name, email or role (case-insensitive)
+  const filteredUsers = mockUsers.filter(user =>
+    user.name.toLowerCase().includes(searchText.toLowerCase()) ||
+    user.email.toLowerCase().includes(searchText.toLowerCase()) ||
+    user.role.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  // handleEdit: placeholder handler invoked when "Edit" action is triggered for a user row
+  const handleEdit = (userId: string) => {
+    console.log('Edit user:', userId); // log for debugging; replace with real edit/navigation logic
+  };
+
+  // handleDelete: placeholder handler invoked when "Delete" action is triggered for a user row
+  const handleDelete = (userId: string) => {
+    console.log('Delete user:', userId); // log for debugging; replace with API call + refresh logic
+  };
+
+  // handleView: placeholder handler invoked when "View" action is triggered for a user row
+  const handleView = (userId: string) => {
+    console.log('View user:', userId); // log for debugging; could navigate to details page
+  };
+
+  
+  // Return the public API for components using this hook
+  return {
+    navigate, // expose navigate so consumers can perform navigation if they need
+    searchText, // expose current search text for controlled inputs
+    setSearchText, // setter to update the search text from UI
+    usersData: mockUsers, // raw users dataset (unfiltered) for any consumer needs
+    filteredUsers, // filtered array used as the table dataSource
+    handleEdit, // edit handler bound to this hook
+    handleDelete, // delete handler bound to this hook
+    handleView, // view handler bound to this hook
+    // getActionItems: helper that binds this hook's handlers to a specific record
+    getActionItems: (record: any) => getActionItems(record, handleView, handleEdit, handleDelete),
+    // columns: table columns wired with this hook's handlers for actions column
+    columns: columns(handleView, handleEdit, handleDelete)
+  };
+}
+
+************* ./src/hooks/tableColumns.tsx ************
+// src/hooks/tableColumns.tsx
+import { TableColumnsType, Button, Space, Avatar, Tag, Dropdown } from 'antd';
+import { UserOutlined, MailOutlined, PhoneOutlined, MoreOutlined } from '@ant-design/icons';
+import { getActionItems } from './actionItems.tsx';
+
+// Export a factory that returns the Table columns configured with the provided row action handlers
+export const columns = (
+  handleView: (userId: string) => void,
+  handleEdit: (userId: string) => void,
+  handleDelete: (userId: string) => void
+): TableColumnsType<any> => [
+  {
+    title: 'User',
+    dataIndex: 'name',
+    key: 'name',
+    render: (text: string, record: any) => (
+      <Space>
+        {/* Avatar: shows image if provided, otherwise user icon */}
+        <Avatar src={record.avatar} icon={<UserOutlined />} />
+        <div>
+          {/* Primary line: user's display name in bold */}
+          <div style={{ fontWeight: 500 }}>{text}</div>
+          {/* Secondary line: small, muted text for email */}
+          <div style={{ fontSize: '12px', color: '#666' }}>
+            {/* Small mail icon preceding the email */}
+            <MailOutlined style={{ marginRight: 4 }} />
+            {record.email}
+          </div>
+        </div>
+      </Space>
+    ),
+  },
+  {
+    title: 'Contact',
+    dataIndex: 'phone',
+    key: 'phone',
+    render: (phone: string) => (
+      <Space>
+        {/* Phone icon to indicate the type of data */}
+        <PhoneOutlined />
+        {phone}
+      </Space>
+    ),
+    // Only show this column on medium and larger screens
+    responsive: ['md'],
+  },
+  {
+    title: 'Role',
+    dataIndex: 'role',
+    key: 'role',
+    render: (role: string) => {
+      // Choose tag color by role
+      const color = role === 'Admin' ? 'red' : role === 'Editor' ? 'blue' : 'green';
+      return <Tag color={color}>{role}</Tag>;
+    },
+  },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+    key: 'status',
+    render: (status: string) => (
+      // Render status as uppercase inside a Tag with success color for active
+      <Tag color={status === 'active' ? 'green' : 'default'}>{status.toUpperCase()}</Tag>
+    ),
+  },
+  {
+    title: 'Join Date',
+    dataIndex: 'joinDate',
+    key: 'joinDate',
+    // Only show join date on large screens to save space on small devices
+    responsive: ['lg'],
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    render: (_: any, record: any) => (
+      <Dropdown
+        // Build menu items wired to handlers for this record
+        menu={{ items: getActionItems(record, handleView, handleEdit, handleDelete) }}
+        trigger={['click']}
+      >
+        {/* Button with "more" icon that triggers the actions dropdown */}
+        <Button icon={<MoreOutlined />} />
+      </Dropdown>
+    ),
+  },
+];
+
+************* ./src/main.tsx ************
+import { createRoot } from 'react-dom/client'
+import App from './App.tsx'
+import './index.css'
+
+createRoot(document.getElementById("root")!).render(<App />);
+
+
+************* ./src/vite-env.d.ts ************
+/// <reference types="vite/client" />
+
+
+************* ./src/pages/UsersPage.tsx ************
+import React from 'react'; // React core: required for JSX and component definitions
+import { Table, Input, Space } from 'antd'; // AntD primitives: Table for listing, Input for search, Space for spacing
+import { SearchOutlined } from '@ant-design/icons'; // Icon used inside the search input as a prefix
+import useUsers from '../hooks/useUsers.tsx'; // Custom hook that provides users data, filtering and table columns
+
+const UsersPage: React.FC = () => { // Define UsersPage as a React functional component (no props)
+  // Destructure values returned by the custom hook:
+  // - searchText: current search input value
+  // - setSearchText: setter to update the search text
+  // - filteredUsers: array of users filtered by searchText
+  // - columns: configured columns array for the AntD Table
+  const {
+    searchText,
+    setSearchText,
+    filteredUsers,
+    columns
+  } = useUsers();
+
+  return (
+    <div>
+      {/* Top control area: search input placed inside a Space for consistent spacing */}
+      <Space style={{ marginBottom: 16 }}>
+        <Input
+          placeholder="Search users..." // Placeholder guiding the user what to search
+          value={searchText} // Controlled input value bound to hook state
+          onChange={(e) => setSearchText(e.target.value)} // Update hook state on user input
+          prefix={<SearchOutlined />} // Leading icon to indicate search purpose
+          style={{ width: 300 }} // Fixed width for a predictable layout
+        />
+      </Space>
+      
+      {/* Users table:
+          - columns: column definitions from the hook (renderers, actions)
+          - dataSource: filtered list of users to display
+          - rowKey: unique key for each row (uses 'id' field)
+          - pagination: show 10 rows per page
+      */}
+      <Table
+        columns={columns}
+        dataSource={filteredUsers}
+        rowKey="id"
+        pagination={{ pageSize: 10 }}
+      />
+    </div>
+  );
+};
+
+export default UsersPage; // Default export so routing/pages can import and render the users list
+
+************* ./src/pages/Home.tsx ************
+import React from 'react'; // Import React to enable JSX and component definitions
+import useHome from '../hooks/useHome.tsx'; // Custom hook that provides navigation and stats data for the dashboard
+import WelcomeSection from '../components/Home/WelcomeSection.tsx'; // Top welcome section component
+import StatsSection from '../components/Home/StatsSection.tsx'; // Section that renders statistic cards
+import DashboardContent from '../components/Home/DashboardContent.tsx'; // Main dashboard content (progress + actions)
+
+const Home: React.FC = () => { // Define Home as a React functional component (no props expected)
+  const { navigate, statsData } = useHome(); // Destructure navigate function and prepared stats data from the hook
+  
+  return (
+    <div> {/* Page container for the Home/dashboard content */}
+      <WelcomeSection /> {/* Renders greeting/title and short descriptive paragraph */}
+      <StatsSection statsData={statsData} /> {/* Renders responsive stat cards using data from the hook */}
+      <DashboardContent navigate={navigate} /> {/* Renders progress and quick actions; receives navigate for routing */}
+    </div>
+  );
+};
+
+export default Home; // Default export so routing/pages can import and render this page
+
+************* ./src/pages/Users.tsx ************
+import React from 'react'; // React core: required to use JSX and define this functional component
+import { Typography, Table, Card, Button, Input } from 'antd'; // AntD primitives used on the page (typography, table, card, button, input)
+import { 
+  PlusOutlined, // Icon shown inside the "Create New User" button
+  SearchOutlined, // Icon used as prefix in the search input
+} from '@ant-design/icons'; // Ant Design icons package
+import useUsers from '../hooks/useUsers.tsx'; // Custom hook that provides users data, filters and table configuration
+
+const { Title } = Typography; // Destructure Title for concise usage in JSX
+const { Search } = Input; // Destructure Search for antd Input.Search (we're using Input with prefix; preserve naming)
+
+const Users: React.FC = () => { // Define Users page as a React functional component (no props expected)
+  // Destructure the API returned by the useUsers hook:
+  // - navigate: function to programmatically navigate to other routes
+  // - setSearchText: setter for the search input state used to filter the table
+  // - usersData: raw users dataset (unused directly here but available)
+  // - filteredUsers: filtered dataset used as the Table dataSource
+  // - columns: configured table columns (renders avatar, actions, etc.)
+  const {
+    navigate, setSearchText, usersData, filteredUsers, columns
+  } = useUsers();
+
+  return (
+    <div> {/* Page wrapper: groups header controls and the main card */}
+      <div style={{ 
+        display: 'flex', /* use flexbox to position title and action button */
+        justifyContent: 'space-between', /* push title left and button right */
+        alignItems: 'center', /* vertically center the row items */
+        marginBottom: 24, /* spacing below header row */
+        flexWrap: 'wrap', /* allow items to wrap on narrow screens */
+        gap: 16 /* gap between wrapped items for consistent spacing */
+      }}>
+        <Title level={2} style={{ margin: 0 }}>User Management</Title> {/* Page heading with zero margin for alignment */}
+        <Button 
+          type="primary" /* primary button style to highlight main action */
+          icon={<PlusOutlined />} /* add plus icon to the left of the label */
+          onClick={() => navigate('/create-user')} /* navigate to the create-user page when clicked */
+        >
+          Create New User {/* Button label visible to the user */}
+        </Button>
+      </div>
+
+      <Card> {/* Card: container for search controls and the users table */}
+        <div style={{ marginBottom: 16 }}> {/* spacing wrapper above the table */}
+          <Search
+            placeholder="Search users by name, email, or role" /* guiding placeholder text */
+            prefix={<SearchOutlined />} /* small icon inside the input to indicate search */
+            onChange={(e) => setSearchText(e.target.value)} /* update hook state as user types (controlled search) */
+            style={{ width: 300 }} /* fixed width for predictable layout */
+            allowClear /* show clear button to reset the search input quickly */
+          />
+        </div>
+
+        <Table
+          columns={columns} /* column definitions including renderers and actions */
+          dataSource={filteredUsers} /* filtered dataset from the hook shown in the table */
+          rowKey="id" /* use the 'id' field as the unique row key */
+          pagination={{
+            pageSize: 10, /* default rows per page */
+            showSizeChanger: true, /* allow user to change page size */
+            showQuickJumper: true, /* allow quick jump to a page number */
+            showTotal: (total, range) =>
+              `${range[0]}-${range[1]} of ${total} users`, /* human readable total label */
+          }}
+          scroll={{ x: 800 }} /* enable horizontal scrolling at smaller widths to prevent layout break */
+        />
+      </Card>
+    </div>
+  );
+};
+
+export default Users; // Default export so pages/routes can import and render this Users page
+
+************* ./src/pages/AppLayout.tsx ************
+import React, { useState, useEffect } from 'react'; // React core + hooks for state and lifecycle
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'; // Routing helpers and outlet for nested routes
+import { Layout as AntLayout, Grid } from 'antd'; // Ant Design Layout and Grid utilities
+import Sidebar from '../components/Layout/Sidebar.tsx'; // Sidebar component for app navigation
+import HeaderBar from '../components/Layout/HeaderBar.tsx'; // Header component (top bar with user menu)
+import FooterBar from '../components/Layout/FooterBar.tsx'; // Footer component for page bottom
+
+
+const { Content } = AntLayout; // Destructure Content subcomponent from AntD Layout
+const { useBreakpoint } = Grid; // Destructure useBreakpoint hook to get responsive breakpoints
+
+const AppLayout: React.FC = () => { // Main layout component that wraps routed pages
+  const [collapsed, setCollapsed] = useState(false); // Local state: whether the sidebar is collapsed
+  const navigate = useNavigate(); // Hook: programmatic navigation function
+  const location = useLocation(); // Hook: current location object (used to highlight menu, etc.)
+  const screens = useBreakpoint(); // Get current responsive breakpoint booleans (xs, sm, md, lg, ...)
+
+  useEffect(() => { // Side-effect: adjust collapsed state when breakpoint changes
+    setCollapsed(!screens.md); // Collapse sidebar on small screens (when md is false)
+  }, [screens.md]); // Re-run whenever md breakpoint toggles
+
+  return (
+    <AntLayout style={{ minHeight: '100vh' }}> {/* Root AntD layout filling viewport height */}
+      <Sidebar
+        collapsed={collapsed} /* pass collapsed state to Sidebar so it can render accordingly */
+        setCollapsed={setCollapsed} /* pass setter so Sidebar or header can toggle collapse */
+        navigate={navigate} /* pass navigate so Sidebar menu items can change routes */
+        location={location} /* pass location to allow Sidebar to mark the active item */
+      />
+
+      <AntLayout
+        style={{
+          marginLeft: collapsed ? 80 : 200, /* shift main content to accommodate sider width */
+          transition: 'margin-left 0.2s', /* smooth transition when sider toggles */
+        }}
+      >
+        <HeaderBar collapsed={collapsed} setCollapsed={setCollapsed} /> {/* Top header with collapse toggle */}
+
+        <Content
+          style={{
+            margin: '24px 16px 0', /* outer spacing around content area */
+            overflow: 'initial', /* allow inner content to manage its own overflow */
+            minHeight: 'calc(100vh - 112px)', /* ensure footer fits without overlap */
+          }}
+        >
+          <div
+            style={{
+              padding: 24, /* inner padding for the content card */
+              background: '#fff', /* white background for content surface */
+              borderRadius: 8, /* rounded corners for visual polish */
+              minHeight: '100%', /* ensure inner container spans available height */
+            }}
+          >
+            <Outlet /> {/* Placeholder where routed page components are rendered */}
+          </div>
+        </Content>
+
+        <FooterBar /> {/* Page footer rendered below content */}
+      </AntLayout>
+    </AntLayout>
+  );
+};
+
+export default AppLayout; // Default export so the app's router can use this layout component
+
+
+************* ./src/pages/About.tsx ************
+import React from 'react'; // Import React to enable JSX and define the component
+import { Divider } from 'antd'; // Ant Design Divider used to separate sections visually
+import AboutHeader from '../components/About/AboutHeader.tsx'; // Header component for the About page
+import FeaturesSection from '../components/About/FeaturesSection.tsx'; // Section listing key features as cards
+import TechAndTimelineSection from '../components/About/TechAndTimelineSection.tsx'; // Two-column section: technologies + timeline
+import ArchitectureSection from '../components/About/ArchitectureSection.tsx'; // Section describing app architecture
+
+const About: React.FC = () => { // Define About as a React functional component (no props expected)
+  return (
+    <div> {/* Page container: groups all About page sections */}
+      <AboutHeader /> {/* Top header: title and brief description for the About page */}
+      <Divider /> {/* Visual divider between header and feature section */}
+      <FeaturesSection /> {/* Renders key features as responsive cards */}
+      <TechAndTimelineSection /> {/* Renders technologies used and development timeline side-by-side */}
+      <Divider /> {/* Visual divider before architecture overview */}
+      <ArchitectureSection /> {/* Detailed architecture overview card */}
+    </div>
+  );
+};
+
+export default About; // Default export so routing/pages can import and render the About page
+
+************* ./src/pages/CreateUser.tsx ************
+import React from 'react'; // React core: required to use JSX and define the component
+import { Typography, Card } from 'antd'; // Ant Design primitives: Typography for headings/paragraphs, Card for content container
+import useCreateUser from '../hooks/useCreateUser.tsx'; // Custom hook that provides navigation and form helpers for create user flow
+import BackButton from '../components/CreateUser/BackButton.tsx'; // Reusable Back button component used to return to users list
+import UserForm from '../components/CreateUser/UserForm.tsx'; // Composed form component that renders all create-user fields and actions
+
+const { Title, Paragraph } = Typography; // Destructure Title and Paragraph for concise JSX usage
+
+const CreateUser: React.FC = () => { // Define CreateUser page as a React functional component (no props)
+  const { navigate } = useCreateUser(); // Extract navigate function from hook to programmatically change routes
+
+  return (
+    <div> {/* Page container: groups back button, heading, description and the card with the form */}
+      <BackButton onBack={() => navigate('/users')} /> {/* BackButton: calls navigate('/users') when clicked */}
+
+      <Title level={2}>Create New User</Title> {/* Page heading indicating the form purpose */}
+      <Paragraph>
+        Fill in the form below to create a new user account. All fields marked with * are required.
+      </Paragraph> {/* Short paragraph explaining what the user should do */}
+
+      <Card> {/* Card: visual container around the form for separation and elevation */}
+        <UserForm /> {/* UserForm: the composed form that contains all input fields and actions */}
+      </Card>
+    </div>
+  );
+};
+
+export default CreateUser; // Default export so router/pages can import and render this page
+
+************* ./src/pages/NotFound.tsx ************
+import { useLocation } from "react-router-dom"; // Hook to access current location (path) from React Router
+import { useEffect } from "react"; // React hook to run side-effects on lifecycle or dependency changes
+
+// NotFound: simple 404 page component shown when a route is not matched
+const NotFound = () => {
+  const location = useLocation(); // Get the current location object (used for logging/debugging)
+
+  // Log a descriptive message to the console whenever the pathname changes (i.e., a 404 occurs)
+  useEffect(() => {
+    console.error(
+      "404 Error: User attempted to access non-existent route:",
+      location.pathname
+    );
+  }, [location.pathname]); // Re-run effect only when the pathname changes
+
+  // Render a centered, accessible 404 message with a link back to the home page
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100"> {/* Full-height container, centers content */}
+      <div className="text-center"> {/* Center text and stack elements vertically */}
+        <h1 className="text-4xl font-bold mb-4">404</h1> {/* Prominent numeric status */}
+        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p> {/* Short explanatory message */}
+        <a href="/" className="text-blue-500 hover:text-blue-700 underline"> {/* Link back to home for recovery */}
+          Return to Home
+        </a>
+      </div>
+    </div>
+  );
+};
+
+export default NotFound; // Default export so router can render this component for unmatched routes
+
+
+************* ./node_modules/antd/es/app/App.d.ts ************
+import type { ReactNode } from 'react';
+import React from 'react';
+import type { AnyObject, CustomComponent } from '../_util/type';
+import type { AppConfig } from './context';
+export interface AppProps<P = AnyObject> extends AppConfig {
+    style?: React.CSSProperties;
+    className?: string;
+    rootClassName?: string;
+    prefixCls?: string;
+    children?: ReactNode;
+    component?: CustomComponent<P> | false;
+}
+declare const App: React.FC<AppProps>;
+export default App;
+
+
+************* ./node_modules/antd/es/app/App.js ************
+"use client";
+
+import React, { useContext } from 'react';
+import classNames from 'classnames';
+import { devUseWarning } from '../_util/warning';
+import { ConfigContext } from '../config-provider';
+import useMessage from '../message/useMessage';
+import useModal from '../modal/useModal';
+import useNotification from '../notification/useNotification';
+import AppContext, { AppConfigContext } from './context';
+import useStyle from './style';
+const App = props => {
+  const {
+    prefixCls: customizePrefixCls,
+    children,
+    className,
+    rootClassName,
+    message,
+    notification,
+    style,
+    component = 'div'
+  } = props;
+  const {
+    direction,
+    getPrefixCls
+  } = useContext(ConfigContext);
+  const prefixCls = getPrefixCls('app', customizePrefixCls);
+  const [wrapCSSVar, hashId, cssVarCls] = useStyle(prefixCls);
+  const customClassName = classNames(hashId, prefixCls, className, rootClassName, cssVarCls, {
+    [`${prefixCls}-rtl`]: direction === 'rtl'
+  });
+  const appConfig = useContext(AppConfigContext);
+  const mergedAppConfig = React.useMemo(() => ({
+    message: Object.assign(Object.assign({}, appConfig.message), message),
+    notification: Object.assign(Object.assign({}, appConfig.notification), notification)
+  }), [message, notification, appConfig.message, appConfig.notification]);
+  const [messageApi, messageContextHolder] = useMessage(mergedAppConfig.message);
+  const [notificationApi, notificationContextHolder] = useNotification(mergedAppConfig.notification);
+  const [ModalApi, ModalContextHolder] = useModal();
+  const memoizedContextValue = React.useMemo(() => ({
+    message: messageApi,
+    notification: notificationApi,
+    modal: ModalApi
+  }), [messageApi, notificationApi, ModalApi]);
+  // https://github.com/ant-design/ant-design/issues/48802#issuecomment-2097813526
+  devUseWarning('App')(!(cssVarCls && component === false), 'usage', 'When using cssVar, ensure `component` is assigned a valid React component string.');
+  // ============================ Render ============================
+  const Component = component === false ? React.Fragment : component;
+  const rootProps = {
+    className: customClassName,
+    style
+  };
+  return wrapCSSVar(/*#__PURE__*/React.createElement(AppContext.Provider, {
+    value: memoizedContextValue
+  }, /*#__PURE__*/React.createElement(AppConfigContext.Provider, {
+    value: mergedAppConfig
+  }, /*#__PURE__*/React.createElement(Component, Object.assign({}, component === false ? undefined : rootProps), ModalContextHolder, messageContextHolder, notificationContextHolder, children))));
+};
+if (process.env.NODE_ENV !== 'production') {
+  App.displayName = 'App';
+}
+export default App;
+
+************* ./node_modules/antd/lib/app/App.d.ts ************
+import type { ReactNode } from 'react';
+import React from 'react';
+import type { AnyObject, CustomComponent } from '../_util/type';
+import type { AppConfig } from './context';
+export interface AppProps<P = AnyObject> extends AppConfig {
+    style?: React.CSSProperties;
+    className?: string;
+    rootClassName?: string;
+    prefixCls?: string;
+    children?: ReactNode;
+    component?: CustomComponent<P> | false;
+}
+declare const App: React.FC<AppProps>;
+export default App;
+
+
+************* ./node_modules/antd/lib/app/App.js ************
+"use strict";
+"use client";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault").default;
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard").default;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireWildcard(require("react"));
+var _classnames = _interopRequireDefault(require("classnames"));
+var _warning = require("../_util/warning");
+var _configProvider = require("../config-provider");
+var _useMessage = _interopRequireDefault(require("../message/useMessage"));
+var _useModal = _interopRequireDefault(require("../modal/useModal"));
+var _useNotification = _interopRequireDefault(require("../notification/useNotification"));
+var _context = _interopRequireWildcard(require("./context"));
+var _style = _interopRequireDefault(require("./style"));
+const App = props => {
+  const {
+    prefixCls: customizePrefixCls,
+    children,
+    className,
+    rootClassName,
+    message,
+    notification,
+    style,
+    component = 'div'
+  } = props;
+  const {
+    direction,
+    getPrefixCls
+  } = (0, _react.useContext)(_configProvider.ConfigContext);
+  const prefixCls = getPrefixCls('app', customizePrefixCls);
+  const [wrapCSSVar, hashId, cssVarCls] = (0, _style.default)(prefixCls);
+  const customClassName = (0, _classnames.default)(hashId, prefixCls, className, rootClassName, cssVarCls, {
+    [`${prefixCls}-rtl`]: direction === 'rtl'
+  });
+  const appConfig = (0, _react.useContext)(_context.AppConfigContext);
+  const mergedAppConfig = _react.default.useMemo(() => ({
+    message: Object.assign(Object.assign({}, appConfig.message), message),
+    notification: Object.assign(Object.assign({}, appConfig.notification), notification)
+  }), [message, notification, appConfig.message, appConfig.notification]);
+  const [messageApi, messageContextHolder] = (0, _useMessage.default)(mergedAppConfig.message);
+  const [notificationApi, notificationContextHolder] = (0, _useNotification.default)(mergedAppConfig.notification);
+  const [ModalApi, ModalContextHolder] = (0, _useModal.default)();
+  const memoizedContextValue = _react.default.useMemo(() => ({
+    message: messageApi,
+    notification: notificationApi,
+    modal: ModalApi
+  }), [messageApi, notificationApi, ModalApi]);
+  // https://github.com/ant-design/ant-design/issues/48802#issuecomment-2097813526
+  (0, _warning.devUseWarning)('App')(!(cssVarCls && component === false), 'usage', 'When using cssVar, ensure `component` is assigned a valid React component string.');
+  // ============================ Render ============================
+  const Component = component === false ? _react.default.Fragment : component;
+  const rootProps = {
+    className: customClassName,
+    style
+  };
+  return wrapCSSVar(/*#__PURE__*/_react.default.createElement(_context.default.Provider, {
+    value: memoizedContextValue
+  }, /*#__PURE__*/_react.default.createElement(_context.AppConfigContext.Provider, {
+    value: mergedAppConfig
+  }, /*#__PURE__*/_react.default.createElement(Component, Object.assign({}, component === false ? undefined : rootProps), ModalContextHolder, messageContextHolder, notificationContextHolder, children))));
+};
+if (process.env.NODE_ENV !== 'production') {
+  App.displayName = 'App';
+}
+var _default = exports.default = App;
+
